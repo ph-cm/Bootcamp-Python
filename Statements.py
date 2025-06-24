@@ -16,7 +16,7 @@ print("Hello") #Intruction that print an "Hello" on the screen
 print("__________________________________________")
 #Exercicio: Quais das seguintes linhas sao expressoes e quais sao declaracoes
 resultado = 10 * 5
-"Python ROcks"
+"Python Rocks"
 
 x = 10
 if x > 0:
