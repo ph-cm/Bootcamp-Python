@@ -28,5 +28,38 @@ Python é uma linguagem de programação de alto nível, interpretada, orientada
   Python possui uma vasta comunidade de desenvolvedores e um ecossistema rico em bibliotecas e frameworks para quase todas as necessidades.
 
 ---
+## Variáveis
+
+Em Python, uma **variável** é um nome que se refere a um valor. Pense nela como uma “caixa” ou “rótulo” que armazena dados na memória do computador.
+
+### Características das Variáveis
+
+- **Nomenclatura**:
+  - Devem começar com uma letra (`a-z`, `A-Z`) ou um sublinhado (`_`).
+  - Podem conter letras, números e sublinhados.
+  - São *case-sensitive*: `idade` é diferente de `Idade`.
+  - Não podem ser palavras-chave reservadas do Python, como `if`, `for`, `while`, etc.
+  - Convenção: usa-se o estilo `snake_case` (letras minúsculas com sublinhados), como em `minha_variavel`.
+
+- **Atribuição**:
+  - Use o operador `=` para atribuir um valor a uma variável.  
+    Exemplo:
+    ```python
+    idade = 25
+    nome = "Maria"
+    ```
+
+- **Tipagem Dinâmica**:
+  - Você **não precisa declarar** o tipo da variável.
+  - O tipo é inferido automaticamente com base no valor atribuído.
+  - O tipo de uma variável pode **mudar durante a execução** do programa.  
+    Exemplo:
+    ```python
+    x = 10        # x é um inteiro
+    x = "dez"     # agora x é uma string
+    ```
+
+---
+
 
 
