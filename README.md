@@ -60,6 +60,24 @@ Em Python, uma **variável** é um nome que se refere a um valor. Pense nela com
     ```
 
 ---
+##  Expressões e Declarações (Statements)
+
+Em programação, é crucial entender a diferença entre **expressões** e **declarações (statements)**.
+
+### Expressões
+
+Uma **expressão** é uma combinação de valores, variáveis, operadores e chamadas de função que o interpretador Python pode avaliar para **produzir um resultado** (um valor).
+
+> Expressões **produzem** algo.
+
+**Exemplos de expressões:**
+
+```python
+5 + 3                 # Avalia para 8
+"Olá" + " " + "Mundo" # Avalia para "Olá Mundo"
+idade * 2             # Avalia para o dobro do valor de 'idade'
+len("Python")         # Avalia para 6
+True and False        # Avalia para False
 
 
 
