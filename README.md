@@ -79,5 +79,78 @@ idade * 2             # Avalia para o dobro do valor de 'idade'
 len("Python")         # Avalia para 6
 True and False        # Avalia para False
 
+```
+---
+## Tipos de Dados
 
+Python possui vários tipos de dados embutidos para representar diferentes tipos de informações. Compreender os tipos de dados é fundamental, pois eles determinam as operações que podem ser realizadas com os valores.
+
+### Tipos de Dados Fundamentais
+
+- **int** (Inteiros):  
+  Números inteiros, positivos ou negativos, sem casas decimais.  
+  Ex: `5`, `-100`, `0`
+
+- **float** (Ponto Flutuante):  
+  Números reais com casas decimais.  
+  Ex: `3.14`, `-0.5`, `2.0`
+
+- **complex** (Complexos):  
+  Números com parte real e imaginária.  
+  Ex: `1 + 2j` (menos comum)
+
+- **bool** (Booleanos):  
+  Representam valores de verdade: `True` ou `False`.  
+  Usados em lógica e controle de fluxo.
+
+- **str** (Strings):  
+  Sequência de caracteres (texto).  
+  Delimitadas por aspas simples `' '` ou duplas `" "`.  
+  Ex: `"Olá, Mundo!"`, `'Python'`
+
+---
+
+### Tipos de Coleção (Estruturas de Dados)
+
+- **list** (Listas):  
+  Coleções **ordenadas e mutáveis**.  
+  Ex: `[1, 2, "três"]`
+
+- **tuple** (Tuplas):  
+  Coleções **ordenadas e imutáveis**.  
+  Ex: `(1, 2, 3)`
+
+- **dict** (Dicionários):  
+  Coleções de **pares chave-valor**, não ordenadas.  
+  Ex: `{"nome": "Ana", "idade": 25}`
+
+- **set** (Conjuntos):  
+  Coleções **não ordenadas** de **itens únicos**.  
+  Ex: `{1, 2, 3}`
+
+---
+
+### Como Verificar o Tipo de Dado
+
+Use a função embutida `type()`:
+
+```python
+x = 10
+y = 3.14
+z = "Python"
+a = True
+b = [1, 2, 3]
+c = (4, 5)
+d = {"chave": "valor"}
+e = {1, 2, 3}
+
+print(type(x))  # <class 'int'>
+print(type(y))  # <class 'float'>
+print(type(z))  # <class 'str'>
+print(type(a))  # <class 'bool'>
+print(type(b))  # <class 'list'>
+print(type(c))  # <class 'tuple'>
+print(type(d))  # <class 'dict'>
+print(type(e))  # <class 'set'>
+```
 
