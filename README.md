@@ -492,7 +492,7 @@ print(f"Meu nome é {nome} e tenho {idade} anos.")
 print(f"Salário: R${salario:.2f}")
 print(f"O dobro de 5 é {5 * 2}.")
 ```
-# 10. Booleanos em Python
+#  Booleanos em Python
 
 Booleanos são um tipo de dado fundamental em Python, representando **valores de verdade**: `True` (verdadeiro) ou `False` (falso).
 
@@ -553,4 +553,84 @@ y = False
 print(x and y)   # False
 print(x or y)    # True
 print(not x)     # False
+```
+#  Tipos de Dados Numéricos em Python
+
+Python oferece suporte nativo a três tipos numéricos principais:
+
+- `int`: Números inteiros
+- `float`: Números de ponto flutuante
+- `complex`: Números complexos
+
+---
+
+## `int` – Inteiros
+
+Representam números inteiros (positivos, negativos ou zero).
+
+- Sem limite de tamanho (exceto a memória do sistema).
+- Armazenam números como `-100`, `0`, `42`, `12345678901234567890`
+
+### Exemplo:
+
+```python
+numero_inteiro = 42
+numero_negativo = -100
+zero = 0
+grande_numero = 12345678901234567890
+
+print(type(numero_inteiro))  # <class 'int'>
+```
+
+## `float` - Ponto Flutuante
+
+Representam numeros reais com casas decimais.
+- Precisao dupla(64 bits), o que pode causar pequenas imprecisoes.
+
+#### Exemplo:
+```python
+numero_decimal = 3.14
+salario = 2500.50
+notacao_cientifica = 1.23e-5  # Equivale a 0.0000123
+
+print(type(numero_decimal))  # <class 'float'>
+```
+
+## `complex` - Numeros Complexos
+
+Representam numeros na forma a + bj onde:
+- `a` e a parte real
+- `b` e a parte imaginaria
+- `j` representa a raiz quadrada de -1
+
+#### Exemplo:
+```python
+numero_complexo = 2 + 3j
+
+print(type(numero_complexo))     # <class 'complex'>
+print(numero_complexo.real)      # 2.0
+print(numero_complexo.imag)      # 3.0
+```
+
+## Conversao de Tipos (Type Casting)
+Forma de converter entre tipos numericos e strings com funcoes embutidas:
+| Função    | Conversão             |
+| --------- | --------------------- |
+| `int()`   | Converte para inteiro |
+| `float()` | Converte para float   |
+| `str()`   | Converte para string  |
+
+#### Exemplos:
+```python
+numero_float = 5.9
+numero_inteiro_convertido = int(numero_float)
+print(numero_inteiro_convertido)  # 5 (truncado)
+
+numero_str = "123"
+numero_inteiro_de_str = int(numero_str)
+print(numero_inteiro_de_str)  # 123
+
+numero_int = 7
+numero_float_convertido = float(numero_int)
+print(numero_float_convertido)  # 7.0
 ```
