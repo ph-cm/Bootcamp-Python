@@ -336,3 +336,159 @@ print(clima)   # Quente
 
 ```
 
+# 9. Strings em Python
+
+Strings são sequências de caracteres utilizadas para representar texto. São **imutáveis** e fundamentais na linguagem Python.
+
+---
+
+## Criação de Strings
+
+Strings podem ser criadas com:
+
+- Aspas simples: `'texto'`
+- Aspas duplas: `"texto"`
+- Aspas triplas: `'''texto'''` ou `"""texto"""` (permitem múltiplas linhas)
+
+```python
+nome = "Alice"
+mensagem = 'Olá, mundo!'
+paragrafo = """Este é um parágrafo
+que abrange várias linhas."""
+```
+### Imutabilidade das Strings
+
+STrings não podem ser modificadas após serem criadas
+
+```python
+saudacao = "Olá"
+saudacao[0] = "A"  # TypeError!
+
+nova_saudacao = saudacao + " Mundo"
+print(saudacao)       # Olá
+print(nova_saudacao)  # Olá Mundo
+```
+
+## Métodos de String
+
+Python oferece diversos métodos para a manipulação de strings.
+
+| Método            | Descrição                         | Exemplo                          | Resultado         |
+| ----------------- | --------------------------------- | -------------------------------- | ----------------- |
+| `upper()`         | Converte para maiúsculas          | `"hello".upper()`                | `"HELLO"`         |
+| `lower()`         | Converte para minúsculas          | `"HELLO".lower()`                | `"hello"`         |
+| `capitalize()`    | Primeira letra maiúscula          | `"python".capitalize()`          | `"Python"`        |
+| `title()`         | Primeira letra de cada palavra    | `"hello world".title()`          | `"Hello World"`   |
+| `strip()`         | Remove espaços nas extremidades   | `" olá ".strip()`                | `"olá"`           |
+| `lstrip()`        | Remove espaços à esquerda         | `" olá ".lstrip()`               | `"olá "`          |
+| `rstrip()`        | Remove espaços à direita          | `" olá ".rstrip()`               | `" olá"`          |
+| `replace(a, b)`   | Substitui substrings              | `"banana".replace("a", "o")`     | `"bonono"`        |
+| `split(sep)`      | Divide a string em lista          | `"a,b,c".split(",")`             | `['a', 'b', 'c']` |
+| `join(iterable)`  | Junta elementos com separador     | `",".join(['a', 'b', 'c'])`      | `"a,b,c"`         |
+| `startswith(sub)` | Verifica início                   | `"Python".startswith("Py")`      | `True`            |
+| `endswith(sub)`   | Verifica fim                      | `"arquivo.txt".endswith(".txt")` | `True`            |
+| `find(sub)`       | Índice da primeira ocorrência     | `"hello".find("l")`              | `2`               |
+| `count(sub)`      | Contagem de ocorrências           | `"banana".count("a")`            | `3`               |
+| `isalnum()`       | Verifica se é alfanumérico        | `"Python123".isalnum()`          | `True`            |
+| `isalpha()`       | Verifica se é alfabético          | `"Python".isalpha()`             | `True`            |
+| `isdigit()`       | Verifica se é numérico            | `"123".isdigit()`                | `True`            |
+| `isspace()`       | Verifica se contém apenas espaços | `" ".isspace()`                  | `True`            |
+
+```python
+texto = "  Python é divertido!  "
+
+print(texto.strip())                         # "Python é divertido!"
+print(texto.upper())                         # "  PYTHON É DIVERTIDO!  "
+print(texto.lower())                         # "  python é divertido!  "
+print(texto.replace("divertido", "incrível"))# "  Python é incrível!  "
+
+palavras = texto.strip().split(" ")
+print(palavras)                              # ['Python', 'é', 'divertido!']
+
+nova_frase = "-".join(palavras)
+print(nova_frase)                            # "Python-é-divertido!"
+```
+
+### Escapando Caracteres
+
+Caractere de escape `\` permite incluir símbolos especiais dentro de strings.
+
+| Escape | Descrição       |
+| ------ | --------------- |
+| `\'`   | Aspa simples    |
+| `\"`   | Aspa dupla      |
+| `\\`   | Barra invertida |
+| `\n`   | Nova linha      |
+| `\t`   | Tabulação       |
+
+#### Exemplos:
+
+```python
+print('Eu disse: \'Olá!\'')
+print("O caminho é C:\\Users\\Documentos")
+print("Linha 1\nLinha 2")
+print("Nome:\tJoão")
+```
+
+### Raw STrings:
+
+Use `r". . ."` para ignorar os caracteres de escape
+
+```python
+caminho = r"C:\novo\diretorio\arquivo.txt"
+print(caminho)  # Saída literal do caminho
+```
+
+## Caracteres de STring e Slicing
+
+Strings podem ser manipuladas como sequencias de caracteres
+
+#### Indexação:
+
+Começa no indice `0`
+
+Indices negativos começam do final
+
+```python
+frase = "Python"
+
+print(frase[0])   # P
+print(frase[2])   # t
+print(frase[-1])  # n
+print(frase[-6])  # P
+```
+
+### Slicing [start:end:step]
+
+```python
+texto = "Programação Python"
+
+print(texto[0:9])     # Programaç
+print(texto[:9])      # Programaç
+print(texto[10:])     # Python
+print(texto[:])       # Programação Python
+print(texto[::2])     # PogaçoPto
+print(texto[::-1])    # nohtyP oãçamargorP
+print(texto[4:10:2])  # ra
+```
+
+### Comprimento da String
+
+Use `len()` para contar os caracteres
+
+```python
+nome = "Mundo"
+print(len(nome))
+```
+
+### Formatação de Strings
+
+```python
+nome = "Maria"
+idade = 22
+salario = 5000.75
+
+print(f"Meu nome é {nome} e tenho {idade} anos.")
+print(f"Salário: R${salario:.2f}")
+print(f"O dobro de 5 é {5 * 2}.")
+```
