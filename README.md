@@ -492,3 +492,65 @@ print(f"Meu nome é {nome} e tenho {idade} anos.")
 print(f"Salário: R${salario:.2f}")
 print(f"O dobro de 5 é {5 * 2}.")
 ```
+# 10. Booleanos em Python
+
+Booleanos são um tipo de dado fundamental em Python, representando **valores de verdade**: `True` (verdadeiro) ou `False` (falso).
+
+---
+
+## Características Gerais
+
+- Os valores booleanos são: `True` e `False` (com a primeira letra maiúscula).
+- Tipo de dado: `bool`
+- Usados em estruturas condicionais, laços e expressões lógicas.
+
+```python
+x = True
+y = False
+
+print(x)          # True
+print(type(x))    # <class 'bool'>
+```
+
+### Contextoo Booleano
+
+EM Python, muitos valores podem ser avaliados como booleanos automaticamente
+
+#### Valores "Falsy":
+
+| Tipo       | Valor   |
+| ---------- | ------- |
+| None       | `None`  |
+| Booleano   | `False` |
+| Inteiro    | `0`     |
+| Float      | `0.0`   |
+| String     | `""`    |
+| Lista      | `[]`    |
+| Tupla      | `()`    |
+| Dicionário | `{}`    |
+| Conjunto   | `set()` |
+
+#### Valores "Truthy":
+
+- Qualquer numero diferente de zero
+- Qualquer string nao vazia
+- Qualquer lista,tupla, dicionario ouy conjunto nao vazio
+
+#### Revisao: Operadores Booleanos:
+
+| Operador | Descrição                                         | Exemplo          | Resultado |
+| -------- | ------------------------------------------------- | ---------------- | --------- |
+| `and`    | Retorna `True` se ambos os operandos forem `True` | `True and False` | `False`   |
+| `or`     | Retorna `True` se pelo menos um for `True`        | `True or False`  | `True`    |
+| `not`    | Inverte o valor booleano                          | `not True`       | `False`   |
+
+#### Exemplo:
+
+```python
+x = True
+y = False
+
+print(x and y)   # False
+print(x or y)    # True
+print(not x)     # False
+```
