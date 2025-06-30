@@ -634,3 +634,65 @@ numero_int = 7
 numero_float_convertido = float(numero_int)
 print(numero_float_convertido)  # 7.0
 ```
+
+# Funções Built-in (Embutidas) em Python
+
+Python possui diversas funções embutidas (`built-in`) que podem ser utilizadas diretamente, sem necessidade de importar módulos. Essas funções são extremamente úteis para manipular dados, interagir com o usuário, realizar conversões e muito mais.
+
+---
+
+## 📋 Principais Funções Built-in
+
+| Função             | Descrição                                                                 |
+|--------------------|---------------------------------------------------------------------------|
+| `print()`          | Exibe uma saída no console.                                               |
+| `input()`          | Lê uma entrada do usuário (como string).                                 |
+| `len()`            | Retorna o comprimento de uma sequência (string, lista, tupla, etc.).     |
+| `type()`           | Retorna o tipo de um objeto.                                              |
+| `int()`, `float()`, `str()`, `bool()` | Funções de conversão de tipo.                        |
+| `sum()`            | Soma os elementos de um iterável.                                         |
+| `min()`, `max()`   | Retornam o menor e o maior elemento de um iterável, respectivamente.      |
+| `abs()`            | Retorna o valor absoluto de um número.                                   |
+| `round()`          | Arredonda um número para o inteiro mais próximo.                         |
+| `dir()`            | Lista os atributos e métodos de um objeto.                               |
+| `help()`           | Fornece ajuda/documentação sobre o objeto especificado.                   |
+| `range()`          | Gera uma sequência de números.                                            |
+| `enumerate()`      | Retorna pares (índice, valor) de um iterável.                             |
+| `zip()`            | Agrupa elementos de múltiplos iteráveis em tuplas.                        |
+| `sorted()`         | Retorna uma nova lista ordenada a partir de um iterável.                  |
+| `map()`, `filter()`, `reduce()` | Funções de ordem superior (detalhadas posteriormente).     |
+
+---
+
+## 💡 Exemplos Práticos
+
+```python
+lista_numeros = [10, 5, 20, 15]
+
+print(f"Comprimento da lista: {len(lista_numeros)}")     # 4
+print(f"Soma dos números: {sum(lista_numeros)}")         # 50
+print(f"Menor número: {min(lista_numeros)}")             # 5
+print(f"Maior número: {max(lista_numeros)}")             # 20
+
+print(f"Valor absoluto de -7: {abs(-7)}")                # 7
+print(f"Arredondamento de 3.7: {round(3.7)}")            # 4
+print(f"Arredondamento de 3.2: {round(3.2)}")            # 3
+print(f"Arredondamento de 3.5: {round(3.5)}")            # 4 (para o par mais próximo)
+```
+
+#### `enumerate()`: Iterando com indice
+
+```python
+for i, valor in enumerate(["a", "b", "c"]):
+    print(f"Índice: {i}, Valor: {valor}")
+```
+
+### `zip()`: Combina dois ou mais iteraveis
+
+```python
+nomes = ["Ana", "Beto"]
+idades = [25, 30]
+
+for nome, idade in zip(nomes, idades):
+    print(f"{nome} tem {idade} anos.")
+```
