@@ -783,3 +783,55 @@ print(StatusPedido.PROCESSANDO.value)  # 2
 ```
 
 ##### Enums sao usadas para representar estados fixos(categorias, opcoes de menu, dias da semana). Evite usar valores magicos como `"ativo"` ou `1`, prefira usar `Status.ATIVO`.
+
+# Entrada do Usuário com `input()`
+
+A função embutida `input()` permite que o programa **receba dados digitados pelo usuário** no terminal.
+
+---
+
+## 📌 Características
+
+- A função `input()` **sempre retorna uma `string`**, mesmo que o usuário digite um número.
+- Você pode passar uma **mensagem (prompt)** como argumento.
+
+### 🔠 Sintaxe:
+
+```python
+variavel = input("Seu prompt aqui: ")
+```
+
+#### Exemplo:
+
+```python
+nome = input("Qual é o seu nome? ")
+print(f"Olá, {nome}!")
+```
+
+### Conversao de Tipos
+
+Como `input()` retorna uma string, e necessario converter para outros tipos se necessario:
+
+```python
+idade_str = input("Quantos anos você tem? ")
+idade = int(idade_str)
+
+print(f"Daqui a um ano, você terá {idade + 1} anos.")
+```
+
+ou:
+
+```python
+idade = int(input("Digite sua idade: "))
+```
+
+#### Exemplo com NUmeros Reais
+
+```python
+primeiro_numero = float(input("Digite o primeiro número: "))
+segundo_numero = float(input("Digite o segundo número: "))
+
+soma = primeiro_numero + segundo_numero
+print(f"A soma é: {soma}")
+```
+
