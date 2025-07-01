@@ -835,3 +835,59 @@ soma = primeiro_numero + segundo_numero
 print(f"A soma é: {soma}")
 ```
 
+# Declarações de Controle (Control Statements)
+
+As declarações de controle permitem **alterar o fluxo de execução** do programa, baseando-se em condições ou decisões lógicas.
+
+---
+
+## 1. `if`, `elif`, `else` (Condicionais)
+
+Essas estruturas controlam a execução de **blocos de código diferentes dependendo de condições booleanas**.
+
+---
+
+### Sintaxe Básica
+
+```python
+if condicao1:
+    # Código executado se condicao1 for True
+elif condicao2:
+    # Código executado se condicao1 for False E condicao2 for True
+else:
+    # Código executado se nenhuma das condições anteriores for True
+```
+
+#### Exemplo:
+
+```python
+idade = 18
+
+if idade >= 18:
+    print("Você é maior de idade.")
+else:
+    print("Você é menor de idade.")
+
+temperatura = 28
+
+if temperatura > 30:
+    print("Está muito quente!")
+elif temperatura > 20:
+    print("Está agradável.")
+else:
+    print("Está frio.")
+
+saldo = 1000
+saque = 500
+
+if saque <= saldo:
+    if saque % 50 == 0:
+        print("Saque realizado com sucesso.")
+        saldo -= saque
+    else:
+        print("Valor do saque inválido. Apenas múltiplos de 50.")
+else:
+    print("Saldo insuficiente.")
+
+print(f"Saldo atual: {saldo}")
+```
