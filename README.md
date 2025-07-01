@@ -696,3 +696,90 @@ idades = [25, 30]
 for nome, idade in zip(nomes, idades):
     print(f"{nome} tem {idade} anos.")
 ```
+
+# Enums (Enumerações) em Python
+
+Enums (enumerações) são **conjuntos de nomes simbólicos associados a valores constantes únicos**. Eles ajudam a tornar o código mais claro, organizado e seguro.
+
+> 📦 Enums são definidos usando a classe `Enum` do módulo `enum`.
+
+---
+
+## ✅ Por que usar Enums?
+
+- **Legibilidade**: nomes simbólicos são mais fáceis de entender que números ou strings soltas.
+- **Manutenibilidade**: altera-se o valor de um único lugar sem afetar o resto do código.
+- **Segurança**: restringe os valores válidos — reduz erros de digitação.
+- **Autocompletar**: ferramentas como VS Code e PyCharm facilitam o uso com sugestões.
+
+---
+
+## 🧪 Exemplo Básico
+
+```python
+from enum import Enum
+
+class DiaDaSemana(Enum):
+    SEGUNDA = 1
+    TERCA = 2
+    QUARTA = 3
+    QUINTA = 4
+    SEXTA = 5
+    SABADO = 6
+    DOMINGO = 7
+
+# Acessando membros:
+print(DiaDaSemana.SEGUNDA)        # DiaDaSemana.SEGUNDA
+print(DiaDaSemana.SEGUNDA.name)   # 'SEGUNDA'
+print(DiaDaSemana.SEGUNDA.value)  # 1
+```
+
+#### Comparacao:
+
+```python
+meu_dia = DiaDaSemana.SEXTA
+
+if meu_dia == DiaDaSemana.SEXTA:
+    print("É sexta-feira!")  # Será impresso
+```
+
+#### Iteracao:
+
+```python
+for dia in DiaDaSemana:
+    print(f"{dia.name} tem o valor {dia.value}")
+```
+
+#### Buscar por valor:
+
+```python
+dia_por_valor = DiaDaSemana(3)
+print(dia_por_valor)  # DiaDaSemana.QUARTA
+```
+
+#### Buscar por nome:
+
+```python
+dia_por_nome = DiaDaSemana["DOMINGO"]
+print(dia_por_nome)  # DiaDaSemana.DOMINGO
+```
+
+## `auto()` para valores automaticos
+
+Pode-se usar auto() para que o Python atribua valores sequenciais automaticamente:
+
+```python
+from enum import Enum, auto
+
+class StatusPedido(Enum):
+    PENDENTE = auto()
+    PROCESSANDO = auto()
+    ENVIADO = auto()
+    ENTREGUE = auto()
+    CANCELADO = auto()
+
+print(StatusPedido.PENDENTE.value)     # 1
+print(StatusPedido.PROCESSANDO.value)  # 2
+```
+
+##### Enums sao usadas para representar estados fixos(categorias, opcoes de menu, dias da semana). Evite usar valores magicos como `"ativo"` ou `1`, prefira usar `Status.ATIVO`.
