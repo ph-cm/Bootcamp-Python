@@ -891,3 +891,134 @@ else:
 
 print(f"Saldo atual: {saldo}")
 ```
+
+# Listas
+
+Listas são um dos tipos de coleção mais versáteis em Python. São **coleções ordenadas e mutáveis**, e podem conter elementos de diferentes tipos.
+
+---
+
+##  Criação de Listas
+
+```python
+minha_lista = [1, 2, 3, "quatro", True, 5.0]
+lista_vazia = []
+```
+
+### Acessando Elementos (Indexacao)
+```python
+frutas = ["maçã", "banana", "laranja", "uva"]
+print(frutas[0])   # maçã
+print(frutas[2])   # laranja
+print(frutas[-1])  # uva (último elemento)
+```
+
+### Fatiamento (Slicing)
+```python
+numeros = [10, 20, 30, 40, 50, 60]
+print(numeros[1:4])   # [20, 30, 40]
+print(numeros[:3])    # [10, 20, 30]
+print(numeros[3:])    # [40, 50, 60]
+print(numeros[::2])   # [10, 30, 50]
+```
+
+### Mutabilidade
+```python
+minha_lista = ["um", "dois", "três"]
+minha_lista[1] = "novo valor"
+print(minha_lista)  # ['um', 'novo valor', 'três']
+
+minha_lista[0:2] = ["a", "b", "c"]
+print(minha_lista)  # ['a', 'b', 'c', 'três']
+```
+
+## Metodos Comuns de Lista
+| Método             | Descrição                                 | Exemplo                   |
+| ------------------ | ----------------------------------------- | ------------------------- |
+| `append(item)`     | Adiciona item ao final                    | `lista.append(4)`         |
+| `insert(i, item)`  | Insere item no índice `i`                 | `lista.insert(1, 'novo')` |
+| `remove(item)`     | Remove a **primeira** ocorrência do item  | `lista.remove(2)`         |
+| `pop(i)`           | Remove e retorna item (último por padrão) | `lista.pop()` ou `pop(1)` |
+| `del lista[i]`     | Remove item ou fatia                      | `del lista[0:2]`          |
+| `clear()`          | Limpa a lista                             | `lista.clear()`           |
+| `index(item)`      | Retorna índice da primeira ocorrência     | `lista.index("a")`        |
+| `count(item)`      | Conta ocorrências do item                 | `lista.count(3)`          |
+| `sort()`           | Ordena no local                           | `lista.sort()`            |
+| `reverse()`        | Inverte no local                          | `lista.reverse()`         |
+| `copy()`           | Retorna uma cópia rasa                    | `lista.copy()`            |
+| `extend(iterável)` | Adiciona elementos de outro iterável      | `lista.extend([4, 5])`    |
+
+#### Exemplos de Metodos
+
+```python
+minha_lista = [1, 2, 3]
+
+minha_lista.append(4)
+minha_lista.insert(1, 99)
+print(minha_lista)  # [1, 99, 2, 3, 4]
+
+minha_lista.remove(2)
+print(minha_lista)  # [1, 99, 3, 4]
+
+removido = minha_lista.pop()
+print(removido)     # 4
+print(minha_lista)  # [1, 99, 3]
+```
+
+### Iterando sobre Listas
+```python
+alunos = ["Ana", "Beto", "Carlos"]
+
+# Forma simples
+for aluno in alunos:
+    print(aluno)
+
+# Com índice
+for i in range(len(alunos)):
+    print(f"Aluno {i}: {alunos[i]}")
+
+# Com enumerate
+for i, aluno in enumerate(alunos):
+    print(f"Índice {i}: {aluno}")
+```
+
+## Ordenando Listas
+
+`list.sort()` -- Ordenacao no local
+
+Modeifica a lista original. Mais eficiente em termo de memoria
+```python
+numeros = [3, 1, 4, 1, 5, 9, 2]
+numeros.sort()
+print(numeros)  # [1, 1, 2, 3, 4, 5, 9]
+
+letras = ['c', 'a', 'b']
+letras.sort(reverse=True)
+print(letras)  # ['c', 'b', 'a']
+```
+
+`sorted()`-- Cria um nova lista ordenada
+
+Mantem a lista original inalterada
+```python
+numeros_originais = [3, 1, 4, 1, 5, 9, 2]
+ordenada = sorted(numeros_originais)
+print(numeros_originais)  # [3, 1, 4, 1, 5, 9, 2]
+print(ordenada)           # [1, 1, 2, 3, 4, 5, 9]
+```
+
+##### Ordenando com `key`
+
+Usa uma funcao de transformacao como base da ordenacao
+
+```python
+# Ordenar por segundo item da tupla
+pares = [(1, 'b'), (3, 'a'), (2, 'c')]
+pares_ordenados = sorted(pares, key=lambda x: x[1])
+print(pares_ordenados)  # [(3, 'a'), (1, 'b'), (2, 'c')]
+
+# Ordenar strings por comprimento
+nomes = ["João", "Maria", "José", "Ana"]
+ordenados = sorted(nomes, key=len)
+print(ordenados)  # ['Ana', 'João', 'Maria', 'José']
+```
