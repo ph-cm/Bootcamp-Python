@@ -1022,3 +1022,79 @@ nomes = ["João", "Maria", "José", "Ana"]
 ordenados = sorted(nomes, key=len)
 print(ordenados)  # ['Ana', 'João', 'Maria', 'José']
 ```
+
+# Tuplas
+
+Tuplas são **coleções ordenadas e imutáveis**. Diferente das listas, **não podem ser modificadas** após a criação.
+
+---
+
+## Criação de Tuplas
+
+```python
+minha_tupla = (1, 2, 3, "quatro", False)
+tupla_vazia = ()
+tupla_um_elemento = (1,)  # A vírgula é obrigatória!
+```
+
+## Por que usar Tuplas?
+
+**Imutabilidade:** Protege os dados de midificacoes acidentais.
+**Desempenho:** Mais rapidas que listas em algumas operacoes.
+**Chaves de Dicionarios:** Tuplas podem ser usadas como chaves(sao hashble)
+**Retorno multiplo:** Funcoes frequentemente retornam tuplas com multiplos valores.
+
+### Acessando Elementos e SLicing
+```python
+coordenadas = (10, 20, 30)
+print(coordenadas[0])    # 10
+print(coordenadas[1:])   # (20, 30)
+```
+
+### Imutabilidade
+
+Tuplas **nao permitem** alteracoes apos a criacao:
+```python
+minha_tupla = (1, 2, 3)
+
+# minha_tupla[0] = 99      # TypeError
+# minha_tupla.append(4)    # AttributeError
+```
+
+## Metodos Comuns
+
+| Método        | Descrição                                    | Exemplo            |
+| ------------- | -------------------------------------------- | ------------------ |
+| `count(item)` | Conta quantas vezes um item aparece na tupla | `tupla.count(2)`   |
+| `index(item)` | Retorna o índice da **primeira** ocorrência  | `tupla.index("a")` |
+
+### Empacotamento e Desempacotamento
+Atribuicao de multiplos valores com facilidade:
+
+```python
+# Empacotamento
+ponto = (3, 4)
+
+# Desempacotamento
+x, y = ponto
+print(f"X: {x}, Y: {y}")  # X: 3, Y: 4
+```
+
+### Troca de Valores com Tuplas
+```python
+a = 10
+b = 20
+
+a, b = b, a
+print(f"a: {a}, b: {b}")  # a: 20, b: 10
+```
+
+### Retorno multiplo com funcoes
+Funcoes em python retornam tuplas com facilidade
+```python
+def obter_nome_idade():
+    return "Maria", 30
+
+nome, idade = obter_nome_idade()
+print(f"{nome} tem {idade} anos.")  # Maria tem 30 anos.
+```
