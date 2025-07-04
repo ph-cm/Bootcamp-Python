@@ -92,3 +92,7 @@ palavras_ordenadas_dec = sorted(palavras, reverse=True)
 print(palavras_ordenadas_dec)
 
 print("-------------------------------")
+
+nomes = ["Joao", "Maria", "Jose", "Ana"]
+nomes_ordenados_por_tamanho = sorted(nomes, key=len)
+print(nomes_ordenados_por_tamanho)
