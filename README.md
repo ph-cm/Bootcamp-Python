@@ -1098,3 +1098,94 @@ def obter_nome_idade():
 nome, idade = obter_nome_idade()
 print(f"{nome} tem {idade} anos.")  # Maria tem 30 anos.
 ```
+
+# Dicionários (dict)
+
+Dicionários são **coleções de pares chave-valor**, onde cada chave deve ser **única e imutável**. Extremamente úteis para organizar dados estruturados.
+
+---
+
+## Criação de Dicionários
+
+```python
+pessoa = {
+    "nome": "Carlos",
+    "idade": 28,
+    "cidade": "São Paulo"
+}
+
+dicionario_vazio = {}
+```
+
+### Acessando Valores
+```python
+print(pessoa["nome"])  # Carlos
+# print(pessoa["telefone"])  # KeyError!
+```
+
+### Acesso Seguro com `get()`
+```python
+print(pessoa.get("idade"))        # 28
+print(pessoa.get("telefone"))     # None
+print(pessoa.get("endereco", "Não informado"))  # Não informado
+```
+
+### Adicionando ou Atualizando Dados
+```python
+pessoa["profissão"] = "Engenheiro"  # Novo par
+pessoa["idade"] = 29               # Atualiza valor
+```
+
+### Removendo Elementos
+```python
+cadastro = {"id": 1, "nome": "João", "email": "joao@exemplo.com"}
+
+del cadastro["email"]
+nome_removido = cadastro.pop("nome")
+cadastro.clear()  # Remove tudo
+
+# Evita erro se chave não existir
+cadastro.pop("telefone", "Chave não encontrada")
+```
+
+## Metodos Comuns de Dicionario
+
+| Método            | Descrição                                                | Exemplo                  |
+| ----------------- | -------------------------------------------------------- | ------------------------ |
+| `dict.keys()`     | Retorna todas as chaves                                  | `produto.keys()`         |
+| `dict.values()`   | Retorna todos os valores                                 | `produto.values()`       |
+| `dict.items()`    | Retorna todos os pares (chave, valor)                    | `produto.items()`        |
+| `dict.update()`   | Adiciona/atualiza pares a partir de outro dicionário     | `config.update(usuário)` |
+| `dict.pop(chave)` | Remove e retorna o valor de uma chave                    | `dict.pop("nome")`       |
+| `dict.popitem()`  | Remove e retorna o **último par inserido** (Python 3.7+) | `dict.popitem()`         |
+| `dict.clear()`    | Remove todos os pares do dicionário                      | `dict.clear()`           |
+
+### Exemplo de Uso
+```python
+produto = {
+    "nome": "Teclado",
+    "preço": 150.00,
+    "estoque": 50
+}
+
+print(produto.keys())     # dict_keys(['nome', 'preço', 'estoque'])
+print(produto.values())   # dict_values(['Teclado', 150.0, 50])
+print(produto.items())    # dict_items([('nome', 'Teclado'), ('preço', 150.0), ('estoque', 50)])
+
+# Iterando
+for chave in produto:
+    print(chave, produto[chave])
+
+for chave, valor in produto.items():
+    print(f"{chave}: {valor}")
+```
+
+### Usando `update()`
+```python
+config_padrao = {"tema": "escuro", "fonte": "Arial"}
+config_usuario = {"fonte": "Verdana", "idioma": "pt-br"}
+
+config_padrao.update(config_usuario)
+print(config_padrao)
+# {'tema': 'escuro', 'fonte': 'Verdana', 'idioma': 'pt-br'}
+```
