@@ -1189,3 +1189,116 @@ config_padrao.update(config_usuario)
 print(config_padrao)
 # {'tema': 'escuro', 'fonte': 'Verdana', 'idioma': 'pt-br'}
 ```
+
+# Dicionários
+
+Dicionários são coleções **não ordenadas** (em Python 3.7+ eles **mantêm a ordem de inserção**) de pares **chave-valor**.  
+Cada chave deve ser **única e imutável** (strings, números, tuplas são válidos; listas **não podem** ser chaves).
+
+São extremamente úteis para mapear dados, como em um dicionário do mundo real, onde você busca a definição por uma palavra.
+
+---
+
+## Criação de Dicionários
+
+Delimitados por chaves `{}`, com pares `chave: valor` separados por dois-pontos e pares separados por vírgulas:
+
+```python
+pessoa = {
+    "nome": "Carlos",
+    "idade": 28,
+    "cidade": "São Paulo"
+}
+
+dicionario_vazio = {}
+```
+
+#### Acessando Valores
+
+Use a chave entre colchetes. Se a chave nao existir, resulta em `KeyError`
+
+```python
+print(pessoa["nome"])   # Carlos
+# print(pessoa["telefone"])  # KeyError: 'telefone'
+```
+
+### Acesso com `get()`
+
+Use `get()` para acessar valores de forma segura. Retorna `None` se a chave nao existir ou um valor padrao, se especificado:
+
+```python
+print(pessoa.get("idade"))                # 28
+print(pessoa.get("telefone"))             # None
+print(pessoa.get("endereco", "Não informado")) # Não informado
+```
+
+### Adicionando/Modificando Elementos
+
+Atribua um valor a uma chave. Se ela existir, o valor sera atualizado; senao, sera criada:
+
+```python
+pessoa["profissão"] = "Engenheiro"  # Adiciona nova chave-valor
+pessoa["idade"] = 29                # Modifica valor existente
+print(pessoa)
+```
+
+### Removendo Elementos
+
+- `del dict[chave]`: remove a chave; resulta em erro se a chave nao existir
+- `pop(chave)`: remove e retorna valor; resulta em erro se nao existir (pode usar valor padrao)
+- `popitem()`: remove e retorna um par qualquer
+- `clear()`: remove todos os itens
+
+ ```python
+cadastro = {"id": 1, "nome": "João", "email": "joao@exemplo.com"}
+
+del cadastro["email"]
+print(cadastro)  # {'id': 1, 'nome': 'João'}
+
+nome_removido = cadastro.pop("nome")
+print(cadastro)        # {'id': 1}
+print(nome_removido)   # João
+
+# cadastro.pop("telefone", "Chave não encontrada")  # Evita erro
+```
+
+## Metodos Comuns de Dicionarios
+| Método          | Descrição                                          | Exemplo               |
+| --------------- | -------------------------------------------------- | --------------------- |
+| `keys()`        | Retorna uma view com todas as chaves               | `dict.keys()`         |
+| `values()`      | Retorna uma view com todos os valores              | `dict.values()`       |
+| `items()`       | Retorna uma view com todos os pares (chave, valor) | `dict.items()`        |
+| `update(dict2)` | Adiciona/atualiza pares de outro dicionário        | `dict1.update(dict2)` |
+
+### Exemplo:
+```python
+produto = {
+    "nome": "Teclado",
+    "preço": 150.00,
+    "estoque": 50
+}
+
+print(produto.keys())    # dict_keys(['nome', 'preço', 'estoque'])
+print(produto.values())  # dict_values(['Teclado', 150.0, 50])
+print(produto.items())   # dict_items([('nome', 'Teclado'), ('preço', 150.0), ('estoque', 50)])
+
+# Iterando sobre dicionários
+for chave in produto.keys():
+    print(chave)
+
+for valor in produto.values():
+    print(valor)
+
+for chave, valor in produto.items():
+    print(f"{chave}: {valor}")
+```
+
+### Usando `update()`
+```python
+config_padrao = {"tema": "escuro", "fonte": "Arial"}
+config_usuario = {"fonte": "Verdana", "idioma": "pt-br"}
+
+config_padrao.update(config_usuario)
+print(config_padrao)
+# Saída: {'tema': 'escuro', 'fonte': 'Verdana', 'idioma': 'pt-br'}
+```
