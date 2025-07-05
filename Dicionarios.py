@@ -42,3 +42,20 @@ print(cadastro)
 nome_removido = cadastro.pop("nome")
 print(cadastro)
 print(nome_removido)
+
+#metodos
+produto = {"nome": "Teclado", "preco": 150.00, "estoque": 50}
+
+print(produto.keys())
+print(produto.values())
+print(produto.items())
+
+#itterando osbre dicionarios
+for chave in produto.keys():
+    print(chave)
+
+for valor in produto.values():
+    print(valor)
+
+for chave, valor in produto.items():
+    print(f"{chave} : {valor}")
