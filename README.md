@@ -1302,3 +1302,88 @@ config_padrao.update(config_usuario)
 print(config_padrao)
 # Saída: {'tema': 'escuro', 'fonte': 'Verdana', 'idioma': 'pt-br'}
 ```
+
+# Sets (Conjuntos)
+
+Sets são **coleções não ordenadas de itens únicos**.  
+São úteis quando você deseja **evitar duplicatas** e **não se importa com a ordem dos elementos**.
+
+---
+
+## Criação de Sets
+
+Sets são delimitados por `{}`.  
+**Atenção**: `{}` vazio cria um **dicionário**. Para criar um **set vazio**, use `set()`.
+
+```python
+meu_set = {1, 2, 3, 2, 1}  # Duplicatas são ignoradas
+print(meu_set)  # {1, 2, 3}
+
+set_vazio = set()
+print(type(set_vazio))  # <class 'set'>
+
+letras = set("abracadabra")
+print(letras)  # {'a', 'b', 'r', 'c', 'd'}
+```
+
+### Principais Usos
+- Remover Duplicatas de Listas
+- Operacoes de conjuntos(uniao, intersecao, diferenca)
+- Verificacao rapida de existencia
+
+### Adicionando e Removendo Elementos
+| Método          | Descrição                                     |
+| --------------- | --------------------------------------------- |
+| `add(item)`     | Adiciona um item. Ignorado se já existir.     |
+| `remove(item)`  | Remove item. Lança `KeyError` se não existir. |
+| `discard(item)` | Remove item. Não lança erro se não existir.   |
+| `pop()`         | Remove e retorna um item arbitrário.          |
+| `clear()`       | Remove todos os itens do set.                 |
+
+```python
+cores = {"vermelho", "azul"}
+
+cores.add("verde")
+print(cores)  # {'vermelho', 'azul', 'verde'}
+
+cores.add("vermelho")  # Já existe, nada muda
+print(cores)
+
+cores.remove("azul")
+print(cores)  # {'vermelho', 'verde'}
+
+cores.discard("amarelo")  # Nada acontece
+print(cores)
+```
+
+### Operacoes de Conjuntos
+| Operação            | Operador | Método                            | Descrição                                              |                            |
+| ------------------- | -------- | --------------------------------- | ------------------------------------------------------ | -------------------------- |
+| União               | \`       | \`                                | `set1.union(set2)`                                     | Elementos de ambos os sets |
+| Interseção          | `&`      | `set1.intersection(set2)`         | Elementos comuns                                       |                            |
+| Diferença (A - B)   | `-`      | `set1.difference(set2)`           | Elementos em A, mas não em B                           |                            |
+| Diferença Simétrica | `^`      | `set1.symmetric_difference(set2)` | Elementos em um ou outro, mas não em ambos             |                            |
+| Subconjunto         | `<=`     | `set1.issubset(set2)`             | Verifica se `set1` está contido em `set2`              |                            |
+| Superconjunto       | `>=`     | `set1.issuperset(set2)`           | Verifica se `set1` contém todos os elementos de `set2` |                            |
+
+#### Exmeplos de Operacoes com Conjuntos
+```python
+set_a = {1, 2, 3, 4}
+set_b = {3, 4, 5, 6}
+
+print(set_a | set_b)        # União: {1, 2, 3, 4, 5, 6}
+print(set_a.union(set_b))   # Mesmo resultado
+
+print(set_a & set_b)        # Interseção: {3, 4}
+print(set_a.intersection(set_b))
+
+print(set_a - set_b)        # Diferença (A - B): {1, 2}
+print(set_a.difference(set_b))
+
+print(set_a ^ set_b)        # Diferença simétrica: {1, 2, 5, 6}
+print(set_a.symmetric_difference(set_b))
+
+set_c = {1, 2}
+print(set_c <= set_a)  # True — set_c é subconjunto de set_a
+print(set_a >= set_c)  # True — set_a é superconjunto de set_c
+```
