@@ -1555,3 +1555,60 @@ print(dobrar(5))     # 10
 print(triplicar(5))  # 15
 ````
 Closures sao uteis para ocnfigurar funcoes dinamicamente e implementar *decoradores*
+
+# Objetos
+
+Em Python, **tudo é um objeto**.  
+Isso inclui **números, strings, listas, funções, classes e até módulos**.  
+Essa natureza orientada a objetos é uma das características mais poderosas da linguagem.
+
+---
+
+## O que é um Objeto?
+
+Um **objeto** é uma **instância de uma classe** e possui:
+
+- **Identidade**: Endereço único na memória (verificado com `id()`).
+- **Tipo**: A classe à qual pertence (verificado com `type()`).
+- **Estado**: Os dados (atributos) que ele armazena.
+- **Comportamento**: As ações (métodos) que ele pode executar.
+
+```python
+numero = 10
+print(id(numero))      # Identidade
+print(type(numero))    # <class 'int'>
+
+lista = [1, 2, 3]
+print(id(lista))
+print(type(lista))
+
+outra_lista = lista
+print(id(outra_lista))  # Mesmo ID da lista original
+
+outra_lista.append(4)
+print(lista)            # [1, 2, 3, 4] — o objeto original foi alterado
+````
+
+### Atributos e Metodos
+- **Atributos:** VAriaveis associadas a um objeto (estado).
+- **Metodos:** Funcoes associadas a um objeto (comporttamento).
+
+````python
+s = "Python"
+
+print(s.upper())      # PYTHON — método: transforma em maiúsculas
+print(s.count('o'))   # 1 — método: conta ocorrências de 'o'
+
+# Strings também possuem atributos internos
+# print(s.__len__)    # atributo que referencia o método len()
+````
+
+#### Sintaxe de acesso:
+- `obejto.atributo`
+- `objeto.metodo()`
+
+## Programacao Orientada a Objetos (OOP)
+A natureza orientada a objetos permite:
+  - Modelar entidades do mundo real
+  - Criar codigo modular, reutilizavel e organizado.
+  - Trabalhar com classes e instancias (objetos).
