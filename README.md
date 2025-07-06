@@ -1387,3 +1387,171 @@ set_c = {1, 2}
 print(set_c <= set_a)  # True — set_c é subconjunto de set_a
 print(set_a >= set_c)  # True — set_a é superconjunto de set_c
 ```
+
+# Funções
+
+Funções são **blocos de código reutilizáveis** que realizam uma tarefa específica.  
+Promovem **modularidade**, **organização** e **reutilização** do código.
+
+---
+
+##  Definindo uma Função
+
+Utilize a palavra-chave `def`, seguida pelo nome da função, parênteses `()` e dois-pontos `:`.  
+O corpo da função deve ser indentado.
+
+```python
+def saudacao():
+    """Esta função imprime uma saudação simples."""
+    print("Olá! Bem-vindo(a) ao Python.")
+
+# Chamando a função
+saudacao()
+```
+
+### Parametros e Argumentos
+- Parametros: variaveis na definicao da funcao
+- Argumentos: valores passados na chamada da funcao
+
+```python
+def cumprimentar(nome, idade):
+  print(f"Ola, {nome}! Voce tem {idade} anos")
+
+cumprimentar("Alice", 22)
+cumprimentar(idade=22, nome="Bob") #argumentos nomeados
+```
+
+### Valores de Retorno(return)
+Usa-se `return` para retornar um valor. Sem ele, o valor padrao retornado eh `None`
+
+```python
+def somar(a, b):
+    resultado = a + b
+    return resultado
+
+soma_total = somar(10, 5)
+print(f"A soma é: {soma_total}")
+
+def eh_par(numero):
+    return numero % 2 == 0
+
+print(eh_par(4))  # True
+print(eh_par(7))  # False
+````
+
+### Argumentos Padrao (Default Arguments)
+Permitem valores padrao se nehum argumento for passado
+
+```python
+def saudacao_personalizada(nome="Visitante", mensagem="Olá"):
+    print(f"{mensagem}, {nome}!")
+
+saudacao_personalizada()                    # Olá, Visitante!
+saudacao_personalizada("Pedro")            # Olá, Pedro!
+saudacao_personalizada("Ana", "E aí")      # E aí, Ana!
+
+# Parametros com valores padrao devem vir apos os parametros sem valor padrao
+
+# def minha_funcao(arg1="default", arg2):  # ❌ Erro
+def minha_funcao(arg1, arg2="default"):    # ✅ Correto
+    pass
+````
+
+### Argumentos de Comprimento Variavel
+
+`*args`- Argumentos Posicioanis Variaveis
+````python
+def somar_tudo(*numeros):
+    total = sum(numeros)
+    return total
+
+print(somar_tudo(1, 2, 3))        # 6
+print(somar_tudo(10, 20, 30, 40)) # 100
+````
+
+`**kwargs`- Argumentos Nomeados Variaveis
+````python
+def exibir_info(**info):
+    for chave, valor in info.items():
+        print(f"{chave.capitalize()}: {valor}")
+
+exibir_info(nome="Fernanda", idade=28, cidade="Rio")
+````
+
+Combinando `*args` e `**kwargs`
+````python
+def funcao_mista(param1, *args, **kwargs):
+    print(f"Param1: {param1}")
+    print(f"Args: {args}")
+    print(f"Kwargs: {kwargs}")
+
+funcao_mista(10, 20, 30, a=1, b=2)
+````
+
+## Escopo de Variaveis
+
+### - Escopo Local
+````python
+def minha_funcao():
+    x = 10  # Local
+    print(x)
+
+minha_funcao()
+# print(x)  # ❌ NameError
+````
+
+### - Escopo Global
+````python
+y = 20  # Global
+
+def outra_funcao():
+    print(y)
+
+outra_funcao()
+print(y)
+````
+
+### - Usando `global`
+````python
+contador = 0
+
+def incrementar():
+    global contador
+    contador += 1
+
+incrementar()
+print(contador)  # 1
+````
+## Funcoes Aninhadas
+Funcoes definidas dentro de outras funcoes. Acessam variaveis da funcao externa.
+
+````python
+def funcao_externa(mensagem_base):
+    complemento = " (interna)"
+
+    def funcao_interna(nome):
+        print(f"{mensagem_base}, {nome}{complemento}")
+
+    return funcao_interna
+
+saudacao = funcao_externa("Bem-vindo")
+saudacao("João")  # Bem-vindo, João (interna)
+saudacao("Maria") # Bem-vindo, Maria (interna)
+````
+
+## CLosures
+Closures "lembram" do ambiente onde foram criadas:
+
+````python
+def criar_multiplicador(fator):
+    def multiplicador(numero):
+        return numero * fator
+    return multiplicador
+
+dobrar = criar_multiplicador(2)
+triplicar = criar_multiplicador(3)
+
+print(dobrar(5))     # 10
+print(triplicar(5))  # 15
+````
+Closures sao uteis para ocnfigurar funcoes dinamicamente e implementar *decoradores*
