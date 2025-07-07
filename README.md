@@ -1612,3 +1612,114 @@ A natureza orientada a objetos permite:
   - Modelar entidades do mundo real
   - Criar codigo modular, reutilizavel e organizado.
   - Trabalhar com classes e instancias (objetos).
+
+# Loops
+
+Loops são estruturas de controle que **permitem repetir blocos de código** diversas vezes.  
+Python oferece dois tipos principais de laços: `for` e `while`.
+
+---
+
+## `for` Loop
+
+Usado para **iterar sobre sequências** (`listas`, `tuplas`, `strings`, `dicionários`, `sets`) e objetos iteráveis.
+
+### Sintaxe
+
+```python
+for variavel in iteravel:
+    # código a ser executado
+````
+
+#### Exemplos
+````python
+# Lista
+frutas = ["maçã", "banana", "cereja"]
+for fruta in frutas:
+    print(fruta)
+
+# String
+nome = "Python"
+for letra in nome:
+    print(letra)
+
+# Tupla
+numeros = (1, 2, 3)
+for num in numeros:
+    print(num)
+
+# Dicionário (chaves)
+aluno = {"nome": "Maria", "idade": 20}
+for chave in aluno:
+    print(chave)
+
+# Dicionário (chave e valor)
+for chave, valor in aluno.items():
+    print(f"{chave}: {valor}")
+````
+
+#### Usando `range()`
+````python
+# range(stop)
+for i in range(5):        # 0 a 4
+    print(i)
+
+# range(start, stop)
+for i in range(1, 6):     # 1 a 5
+    print(i)
+
+# range(start, stop, step)
+for i in range(0, 10, 2): # 0, 2, 4, 6, 8
+    print(i)
+````
+
+### `while` Loop
+Executa o bloco **enquanto uma condicao for verdadeira**
+
+### Sintaxe
+````python
+while condicao:
+    # código a ser executado
+````
+
+#### Exemplo
+````python
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1
+
+# Interação com o usuário
+resposta = ""
+while resposta != "sair":
+    resposta = input("Digite 'sair' para encerrar: ").lower()
+    if resposta != "sair":
+        print("Você não digitou 'sair'.")
+
+# CUIDADO: Loop infinito
+# while True:
+#     print("Loop infinito! Pressione Ctrl+C para parar.")
+````
+
+### `break` e `continue`
+Controlam o fluxo de execucao dentro dos loops.
+
+#### `break`: Interrompe o loop
+````python
+for i in range(10):
+    if i == 5:
+        print("Número 5 encontrado, saindo do loop.")
+        break
+    print(i)
+# Saída: 0, 1, 2, 3, 4
+````
+
+#### `continue`: Pula para a proxima iteracao
+````python
+for i in range(5):
+    if i == 2:
+        print("Pulando o número 2.")
+        continue
+    print(i)
+# Saída: 0, 1, 3, 4
+````
