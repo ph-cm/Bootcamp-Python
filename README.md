@@ -1854,3 +1854,138 @@ class Matematica:
 print(Matematica.somar(5, 3))
 print(Matematica.eh_par(4))
 ````
+# 📦 Módulos em Python
+
+Módulos são arquivos `.py` que contêm código reutilizável como funções, classes e variáveis.  
+Eles ajudam a organizar e reaproveitar o código, mantendo-o limpo e modular.
+
+---
+
+## 🎯 Por que usar Módulos?
+
+- 🔁 **Reusabilidade**: Escreva uma vez, use várias vezes.
+- 📂 **Organização**: Quebra programas grandes em partes menores.
+- 🧠 **Namespace isolado**: Evita conflitos entre nomes de funções ou variáveis.
+
+---
+
+## ✏️ Criando um Módulo
+
+Crie um arquivo chamado `calculadora.py`:
+
+```python
+# calculadora.py
+
+PI = 3.14159
+
+def somar(a, b):
+    return a + b
+
+def subtrair(a, b):
+    return a - b
+
+def multiplicar(a, b):
+    return a * b
+
+def dividir(a, b):
+    if b == 0:
+        raise ValueError("Não é possível dividir por zero.")
+    return a / b
+
+class Calculadora:
+    def __init__(self, valor_inicial=0):
+        self.valor = valor_inicial
+
+    def adicionar(self, num):
+        self.valor += num
+
+    def obter_valor(self):
+        return self.valor
+
+print("Módulo calculadora carregado.")  # Executado na importação
+````
+
+### Importando Modulos
+`import modulo_nome`
+````python
+import calculadora
+
+print(calculadora.somar(5, 3))       # 8
+print(calculadora.PI)                # 3.14159
+minha_calc = calculadora.Calculadora(10)
+minha_calc.adicionar(5)
+print(minha_calc.obter_valor())      # 15
+````
+
+`import modulo_nome as alias`
+````python
+import calculadora as calc
+
+print(calc.multiplicar(4, 2))        # 8
+````
+
+`from modulo_nome import elemento1, elemento2`
+````python
+from calculadora import dividir, Calculadora
+
+print(dividir(10, 2))                # 5.0
+outra_calc = Calculadora()
+````
+
+### Pacotes 
+Pacotes sao diretorios contendo modulos. Um pacote precisa de um arquivo `__init__.py` para ser reconhecido como tal.
+
+````markdown
+meu_projeto/
+├── main.py
+└── utilidades/
+    ├── __init__.py
+    ├── string_utils.py
+    └── math_utils.py
+````
+## Biblioteca Padrao do Python
+| Biblioteca       | Categoria               | Funcionalidade Principal                                                            |
+| ---------------- | ----------------------- | ----------------------------------------------------------------------------------- |
+| `math`           | Matemática              | Operações matemáticas básicas (sqrt, ceil, floor, etc).                             |
+| `random`         | Aleatoriedade           | Geração de números aleatórios, escolha aleatória de elementos.                      |
+| `datetime`       | Data e Hora             | Manipulação de datas, horas, tempo e cronogramas.                                   |
+| `os`             | Sistema Operacional     | Interação com o sistema de arquivos e variáveis de ambiente.                        |
+| `sys`            | Sistema                 | Acesso a parâmetros e funções do interpretador Python.                              |
+| `re`             | Expressões Regulares    | Busca, substituição e análise de strings com padrões regulares.                     |
+| `json`           | Formato de Dados        | Leitura e escrita de dados no formato JSON.                                         |
+| `csv`            | Arquivos CSV            | Leitura e escrita de arquivos CSV (Comma-Separated Values).                         |
+| `shutil`         | Sistema de Arquivos     | Cópia, movimentação e remoção de arquivos e diretórios.                             |
+| `subprocess`     | Execução de Comandos    | Executar comandos e processos do sistema operacional.                               |
+| `collections`    | Estruturas de Dados     | Tipos de dados adicionais como `deque`, `Counter`, `defaultdict`.                   |
+| `itertools`      | Iteradores              | Ferramentas para criar iteradores eficientes.                                       |
+| `functools`      | Funções de Alta Ordem   | Funções como `reduce`, `lru_cache`, `partial`.                                      |
+| `operator`       | Operadores Funcionais   | Permite usar operadores como funções (`add`, `itemgetter`, etc).                    |
+| `typing`         | Tipagem Estática        | Especificar tipos de variáveis e funções (Python 3.5+).                             |
+| `time`           | Tempo                   | Pausar a execução, obter tempo atual, medir duração.                                |
+| `statistics`     | Estatística Básica      | Média, mediana, desvio padrão, variância, etc.                                      |
+| `decimal`        | Precisão Numérica       | Cálculos com números decimais com precisão exata.                                   |
+| `fractions`      | Números Racionais       | Trabalhar com frações em vez de floats.                                             |
+| `hashlib`        | Criptografia            | Geração de hashes (MD5, SHA1, SHA256).                                              |
+| `uuid`           | Identificadores Únicos  | Gerar UUIDs (identificadores únicos universais).                                    |
+| `tkinter`        | Interface Gráfica (GUI) | Criar interfaces gráficas (botões, janelas, menus).                                 |
+| `unittest`       | Testes                  | Testes automatizados (TDD) com casos de teste estruturados.                         |
+| `argparse`       | Linha de Comando        | Parser para argumentos passados via terminal.                                       |
+| `logging`        | Logs                    | Gerenciamento e registro de logs do programa.                                       |
+| `sqlite3`        | Banco de Dados Embutido | Conectar e operar bancos SQLite.                                                    |
+| `requests`       | Web / HTTP              | Enviar requisições HTTP (GET, POST, etc).                                           |
+| `beautifulsoup4` | Web Scraping            | Extração e parsing de dados HTML e XML.                                             |
+| `pandas`         | Dados Tabulares         | Estrutura de dados (DataFrame), análise e manipulação de dados.                     |
+| `numpy`          | Computação Numérica     | Vetores, arrays multidimensionais, operações vetoriais eficientes.                  |
+| `matplotlib`     | Visualização de Dados   | Criação de gráficos e visualizações em 2D.                                          |
+| `seaborn`        | Visualização Avançada   | Gráficos estatísticos com estilo baseado em `matplotlib` e integração com `pandas`. |
+| `scikit-learn`   | Machine Learning        | Modelos preditivos, regressão, classificação, clustering, etc.                      |
+| `tensorflow`     | Deep Learning           | Redes neurais, aprendizado profundo e modelos treináveis.                           |
+| `keras`          | Deep Learning           | Interface de alto nível para redes neurais (geralmente sobre o TensorFlow).         |
+| `flask`          | Web Framework           | Microframework para APIs e aplicativos web leves.                                   |
+| `django`         | Web Framework           | Framework completo para desenvolvimento web escalável.                              |
+| `fastapi`        | Web / API Moderno       | Criação de APIs rápidas e modernas com tipagem e validação.                         |
+| `pytest`         | Testes                  | Framework de testes avançado, simples de usar.                                      |
+| `openpyxl`       | Excel                   | Leitura e escrita de arquivos `.xlsx` (Excel moderno).                              |
+| `pyautogui`      | Automação de Interface  | Controle do mouse, teclado e automação da tela.                                     |
+| `pygame`         | Jogos                   | Desenvolvimento de jogos 2D e multimídia interativa.                                |
+
