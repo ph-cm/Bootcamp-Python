@@ -1723,3 +1723,134 @@ for i in range(5):
     print(i)
 # Saída: 0, 1, 3, 4
 ````
+# 🧱 Classes (Programação Orientada a Objetos - POO)
+
+Classes são os pilares da Programação Orientada a Objetos (POO) em Python.  
+Elas servem como **modelos** para criar objetos (instâncias), encapsulando dados (*atributos*) e comportamentos (*métodos*).
+
+---
+
+## 🔑 Conceitos-Chave da POO
+
+| Conceito        | Descrição |
+|----------------|-----------|
+| **Classe**     | Modelo ou blueprint para criar objetos. |
+| **Objeto**     | Instância concreta de uma classe. |
+| **Atributo**   | Dado associado ao objeto ou classe. |
+| **Método**     | Função associada a um objeto ou classe. |
+| **`self`**     | Referência à instância atual (equivalente ao `this` em Java). |
+| **`__init__`** | Método construtor, executado ao criar um novo objeto. |
+
+---
+
+## 🧱 Definindo uma Classe
+
+```python
+class Carro:
+    rodas = 4  # Atributo de classe
+
+    def __init__(self, marca, modelo, ano):
+        self.marca = marca
+        self.modelo = modelo
+        self.ano = ano
+
+    def ligar(self):
+        print(f"O {self.marca} {self.modelo} está ligado.")
+
+    def exibir_detalhes(self):
+        pr
+````
+
+### INstanciando Objetos
+````python
+meu_carro = Carro("Toyota", "Corolla", 2020)
+carro_amigo = Carro("Honda", "Civic", 2022)
+
+meu_carro.ligar()
+carro_amigo.exibir_detalhes()
+print(Carro.rodas)
+````
+
+## Herança
+Permite que uma classe herde atributos e metodos de outra
+
+````python
+class Veiculo:
+    def __init__(self, tipo, cor):
+        self.tipo = tipo
+        self.cor = cor
+
+    def descrever(self):
+        print(f"Este é um veículo {self.tipo} da cor {self.cor}.")
+
+class Moto(Veiculo):
+    def __init__(self, cor, cilindrada):
+        super().__init__("moto", cor)
+        self.cilindrada = cilindrada
+
+    def empinar(self):
+        print(f"A moto {self.cor} de {self.cilindrada}cc está empinando!")
+
+    def descrever(self):  # Sobrescrevendo
+        print(f"Esta é uma Moto da cor {self.cor} com {self.cilindrada}cc.")
+
+minha_moto = Moto("Preta", 600)
+minha_moto.descrever()
+minha_moto.empinar()
+````
+
+## Polimorfismo
+Capacidade de objetos de diferentes classes responderem de maneiras diferentes ao mesmo metodo, mantendo uma interface comum.
+
+## Encapsulamento
+Agrupa dados e comportamentos em um unica unidade, controlando o acesso externo.
+
+````python
+class MinhaClasse:
+    def __init__(self):
+        self.publico = "acessível"
+        self._protegido = "uso interno sugerido"
+        self.__privado = "oculto externamente"
+
+obj = MinhaClasse()
+print(obj.publico)
+print(obj._protegido)
+print(obj._MinhaClasse__privado)  # Name mangling
+````
+
+## Metodos Especiais
+
+### `@classmethod`
+Metodo que opera sobre a classe em vez da instancia.
+
+````python
+class Pessoa:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+
+    @classmethod
+    def de_ano_nascimento(cls, nome, ano):
+        idade = 2025 - ano
+        return cls(nome, idade)
+
+p = Pessoa.de_ano_nascimento("Ana", 2000)
+print(f"{p.nome} tem {p.idade} anos.")
+````
+
+### `@staticmethod`
+Meodo independente da instancia ou classe. Funciona como uma funcao comum, mas agrupada na classe.
+
+````python
+class Matematica:
+    @staticmethod
+    def somar(a, b):
+        return a + b
+
+    @staticmethod
+    def eh_par(n):
+        return n % 2 == 0
+
+print(Matematica.somar(5, 3))
+print(Matematica.eh_par(4))
+````
