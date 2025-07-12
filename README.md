@@ -2131,3 +2131,67 @@ print(maior_numero)  # 5
 - Usar `map()` e `filter()` se voce ja tem funcoes reutilizaveis.
 - Usar `reduce()` para agregacoes(como soma, produto, maximo, concatenacao).
 - Usar list comprehensions para operacoes simples
+
+# Recursao
+**Recursao** é uma tecnica inde uma função chama a si mesma para resolver subproblemas menores do mesmo problema original.
+
+## Estrutura de uma função Recursiva
+Toda funcção recursiva deve conter:
+| Conceito              | Descrição                                                                  |
+| --------------------- | -------------------------------------------------------------------------- |
+| **Caso Base**         | Condição de parada. Quando satisfeita, a função retorna sem se autochamar. |
+| **Chamada Recursiva** | A função chama a si mesma com um valor menor que se aproxima do caso base. |
+
+### Quando Usar Recursão 
+- Quando o problema pode ser dividido em subproblemas menores.
+- Para escrever soluções mais elegantes e consisas.
+- Exemplos clássiscos: fatorial, fibonacci, percorrer arvore, pesquisa binária
+
+#### Cuidado ao usar a recursão:
+| Problema           | Descrição                                                             |
+| ------------------ | --------------------------------------------------------------------- |
+| **Stack Overflow** | Cada chamada ocupa a pilha. Pode estourar o limite (\~1000 chamadas). |
+| **Desempenho**     | Algumas soluções recursivas são menos eficientes que iterativas.      |
+
+#### Exemplos:
+````python
+def fatorial(n):
+    if n == 0 or n == 1:  # Caso base
+        return 1
+    else:  # Chamada recursiva
+        return n * fatorial(n - 1)
+
+print(fatorial(5))  # 120
+print(fatorial(0))  # 1
+
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(0))  # 0
+print(fibonacci(1))  # 1
+print(fibonacci(2))  # 1
+print(fibonacci(6))  # 8 (0,1,1,2,3,5,8)
+
+
+def soma_lista_recursiva(lista):
+    if not lista:  # Caso base: lista vazia
+        return 0
+    else:  # Chamada recursiva: remove o primeiro elemento
+        return lista[0] + soma_lista_recursiva(lista[1:])
+
+print(soma_lista_recursiva([1, 2, 3, 4, 5]))  # 15
+print(soma_lista_recursiva([]))              # 0
+````
+
+### Resumo:
+| Critério       | Recursão                     | Iteração                  |
+| -------------- | ---------------------------- | ------------------------- |
+| Clareza        | Mais clara em alguns casos   | Mais verbosa              |
+| Performance    | Pode ser mais lenta          | Geralmente mais eficiente |
+| Uso de memória | Usa pilha de chamadas        | Usa variáveis locais      |
+| Exemplo típico | Fatorial, Fibonacci, árvores | Loops tradicionais        |
