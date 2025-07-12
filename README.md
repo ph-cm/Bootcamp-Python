@@ -2042,3 +2042,92 @@ print(quadrados)
 | Precisa de docstring ou tipagem explícita                     | ❌ Prefira `def` |
 | Código precisa ser mais legível e mantido por terceiros       | ❌ Prefira `def` |
 
+# `map()`, `filter()` e `reduce()`
+Estas são funções de ordem superior (Higher-Order Functions), fundamentais na programação funcional em Python. Elas recebem outras funções como argumentos e operam sobre coleções iteráveis.
+
+## `map()`
+Aplica uma funcao a cada elemento de um iteravel(como uma lista)
+
+### Sintaxe:
+````python
+map(funcao, iteravel
+````
+
+#### Exemplo:
+````python
+numeros = [1, 2, 3, 4, 5]
+
+def dobro(x):
+    return x * 2
+
+dobros = list(map(dobro, numeros))
+print(dobros)  # [2, 4, 6, 8, 10]
+
+triplos = list(map(lambda x: x * 3, numeros))
+print(triplos)  # [3, 6, 9, 12, 15]
+
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+somas = list(map(lambda x, y: x + y, lista1, lista2))
+print(somas)  # [5, 7, 9]
+````
+
+## `filter()`
+Filtra os elementos de um iteravel, mantendo apenas os que satisfazem uma condicao (funcao retorna `True`).
+
+### Sintaxe:
+````python
+filter(funcao, iteravel)
+````
+
+#### Exemplo:
+````python
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+def eh_par(x):
+    return x % 2 == 0
+
+pares = list(filter(eh_par, numeros))
+print(pares)  # [2, 4, 6, 8, 10]
+
+palavras = ["maçã", "abacaxi", "banana", "amora"]
+comeca_com_a = list(filter(lambda palavra: palavra.startswith('a'), palavras))
+print(comeca_com_a)  # ['abacaxi', 'amora']
+````
+
+## `reduce()`
+Aplica uma funcao acumulativamente aos elementos de um iteravel, reduzindo-o a um unico valor.
+
+### Sintaxe:
+````python
+from functools import reduce
+reduce(funcao, iteravel, [valor_inicial])
+````
+
+#### Exemplo:
+````python
+from functools import reduce
+
+numeros = [1, 2, 3, 4, 5]
+
+soma_total = reduce(lambda x, y: x + y, numeros)
+print(soma_total)  # 15
+
+produto_total = reduce(lambda x, y: x * y, numeros)
+print(produto_total)  # 120
+
+maior_numero = reduce(lambda x, y: x if x > y else y, numeros)
+print(maior_numero)  # 5
+````
+
+## Comparativo:
+| Tarefa               | Melhor escolha          | Exemplo rápido                     |
+| -------------------- | ----------------------- | ---------------------------------- |
+| Transformar dados    | `map()` ou list comp    | `[x * 2 for x in lista]`           |
+| Filtrar elementos    | `filter()` ou list comp | `[x for x in lista if x % 2 == 0]` |
+| Acumular valor único | `reduce()`              | `reduce(lambda x,y: x+y, lista)`   |
+
+### Quando Usar?
+- Usar `map()` e `filter()` se voce ja tem funcoes reutilizaveis.
+- Usar `reduce()` para agregacoes(como soma, produto, maximo, concatenacao).
+- Usar list comprehensions para operacoes simples
