@@ -1989,3 +1989,56 @@ meu_projeto/
 | `pyautogui`      | Automação de Interface  | Controle do mouse, teclado e automação da tela.                                     |
 | `pygame`         | Jogos                   | Desenvolvimento de jogos 2D e multimídia interativa.                                |
 
+
+# Funcoes Lambda 
+Funcoes `lambda` são **funções anônimas** e **concisas**, ideais para tarefas rápidas. ELas são frequentemente usadas com funções como `map()`, `filter()` e `sorted()`.
+
+````python
+lambda argumentos: expressao
+````
+
+## Caracteristicas
+| Característica      | Descrição                                                    |
+| ------------------- | ------------------------------------------------------------ |
+| **Anônimas**        | Não têm nome definido com `def`                              |
+| **Concisas**        | Escritas em uma única linha                                  |
+| **Expressão Única** | Contêm apenas uma expressão (sem múltiplas instruções)       |
+| **Uso comum**       | Em funções como `map()`, `filter()`, `sorted()`, `key=` etc. |
+
+### Exemplos de Uso:
+````python
+# Lambda simples para somar
+somar = lambda a, b: a + b
+print(somar(2, 3))  # Saída: 5
+
+# Verificação de numero par
+eh_par = lambda x: x % 2 == 0
+print(eh_par(4))  # True
+print(eh_par(5))  # False
+
+# Lambda com sorted()
+estudantes = [("Alice", 20), ("Bob", 25), ("Carlos", 18)]
+estudantes_ordenados = sorted(estudantes, key=lambda estudante: estudante[1])
+print(estudantes_ordenados)
+# Saída: [('Carlos', 18), ('Alice', 20), ('Bob', 25)]
+
+# Lambda com filter()
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+print(pares)  # [2, 4, 6, 8, 10]
+
+# Lambda com map()
+quadrados = list(map(lambda x: x * x, numeros))
+print(quadrados)
+# [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+````
+
+## Quando Usar x Não Usar
+| Situação                                                      | Recomendação    |
+| ------------------------------------------------------------- | --------------- |
+| Função curta de uma linha                                     | ✅ Use `lambda`  |
+| Usada como argumento em `map()`, `filter()`, `sorted()`, etc. | ✅ Use `lambda`  |
+| Funções complexas com múltiplas instruções                    | ❌ Prefira `def` |
+| Precisa de docstring ou tipagem explícita                     | ❌ Prefira `def` |
+| Código precisa ser mais legível e mantido por terceiros       | ❌ Prefira `def` |
+
