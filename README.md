@@ -2312,3 +2312,110 @@ def gritar(mensagem):
 
 gritar("socorro")
 ````
+
+# Exceções (Tratamento de Erros)
+
+Exceções são eventos que ocorrem durante a execução de um programa e que interrompem o fluxo normal das instruções.  
+Quando um erro acontece, uma **exceção é levantada (raised)**. Se não for tratada, o programa para e exibe um **traceback**.
+
+---
+
+## Tipos Comuns de Exceções
+
+| Exceção              | Descrição                                                  |
+|----------------------|------------------------------------------------------------|
+| `NameError`          | Variável não definida.                                     |
+| `TypeError`          | Operação com tipo incorreto.                               |
+| `ValueError`         | Tipo correto, mas valor inválido.                          |
+| `ZeroDivisionError`  | Divisão por zero.                                          |
+| `FileNotFoundError`  | Arquivo não encontrado ao tentar abrir.                    |
+| `IndexError`         | Índice inválido em listas ou outras sequências.            |
+| `KeyError`           | Chave inexistente em um dicionário.                        |
+
+---
+
+## Blocos de Tratamento: `try`, `except`, `else`, `finally`
+
+### Sintaxe:
+
+```python
+try:
+    # Código que pode gerar uma exceção
+except TipoDeExcecao:
+    # Tratamento da exceção
+except OutroTipoDeExcecao as e:
+    # A variável 'e' contém detalhes do erro
+except:
+    # Captura qualquer exceção (uso genérico, com cautela)
+else:
+    # Executado se NENHUMA exceção ocorrer
+finally:
+    # Sempre executado (ideal para limpeza de recursos)
+````
+
+### Exemplos:
+````python
+#Divisao por zero
+try:
+    resultado = 10 / 0
+except ZeroDivisionError:
+    print("Erro: Não é possível dividir por zero!")
+
+print("Programa continua...")
+
+#Multiplos `except`
+try:
+    numero = int(input("Digite um número: "))
+    divisor = int(input("Digite um divisor: "))
+    resultado = numero / divisor
+except ValueError:
+    print("Entrada inválida. Por favor, digite apenas números inteiros.")
+except ZeroDivisionError:
+    print("Erro: O divisor não pode ser zero.")
+except Exception as e:
+    print(f"Ocorreu um erro inesperado: {e}")
+else:
+    print(f"O resultado da divisão é: {resultado}")
+finally:
+    print("Fim da tentativa de divisão.")
+
+#else e finally
+def abrir_arquivo(nome_arquivo):
+    try:
+        f = open(nome_arquivo, 'r')
+    except FileNotFoundError:
+        print(f"Erro: O arquivo '{nome_arquivo}' não foi encontrado.")
+    else:
+        conteudo = f.read()
+        print("Conteúdo do arquivo:")
+        print(conteudo)
+    finally:
+        if 'f' in locals() and not f.closed:
+            f.close()
+            print("Arquivo fechado.")
+
+# Teste com arquivos:
+# abrir_arquivo("exemplo.txt")
+# abrir_arquivo("arquivo_inexistente.txt")
+````
+
+### Levantando excecoes com `raise`
+É possivel forçar a ocorrencia de erros personalizados
+````python
+def validar_idade(idade):
+    if not isinstance(idade, int):
+        raise TypeError("A idade deve ser um número inteiro.")
+    if idade < 0:
+        raise ValueError("A idade não pode ser negativa.")
+    print(f"Idade válida: {idade}")
+
+try:
+    validar_idade(-5)
+except ValueError as e:
+    print(f"Erro de validação: {e}")
+
+try:
+    validar_idade("vinte")
+except TypeError as e:
+    print(f"Erro de tipo: {e}")
+````
