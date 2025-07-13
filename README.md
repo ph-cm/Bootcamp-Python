@@ -2195,3 +2195,120 @@ print(soma_lista_recursiva([]))              # 0
 | Performance    | Pode ser mais lenta          | Geralmente mais eficiente |
 | Uso de memória | Usa pilha de chamadas        | Usa variáveis locais      |
 | Exemplo típico | Fatorial, Fibonacci, árvores | Loops tradicionais        |
+
+
+# Decoradores
+
+Decoradores são uma característica poderosa de Python que permitem modificar o comportamento de funções ou métodos de classe **sem alterar seu código original**.  
+Eles são essencialmente funções que **recebem outra função como argumento**, adicionam alguma funcionalidade e retornam uma nova função (ou modificam a existente).
+
+## Usos comuns de decoradores:
+
+- Logging (registro de informações)
+- Medição de tempo de execução
+- Cache
+- Validação de permissões/autenticação
+- Alterar o comportamento de funções antes ou depois da execução
+
+---
+
+## 📌 Sintaxe Básica
+
+```python
+@decorador
+def minha_funcao():
+    pass
+````
+Isso é equivalente a:
+````python
+minha_funcao = decorador(minha_funcao)
+````
+
+### Criando um Decorador 
+````python
+def meu_primeiro_decorador(func):
+    def wrapper():
+        print("Antes da função ser chamada.")
+        func()
+        print("Depois da função ser chamada.")
+    return wrapper
+
+@meu_primeiro_decorador
+def saudacao():
+    print("Olá, mundo!")
+
+saudacao()
+````
+
+### Decoradores com Argumentos
+````python
+def medir_tempo(func):
+    import time
+    def wrapper(*args, **kwargs):
+        inicio = time.time()
+        resultado = func(*args, **kwargs)
+        fim = time.time()
+        print(f"A função '{func.__name__}' levou {fim - inicio:.4f} segundos para executar.")
+        return resultado
+    return wrapper
+
+@medir_tempo
+def calcular_soma_grande(n):
+    total = 0
+    for i in range(n):
+        total += i
+    return total
+
+@medir_tempo
+def saudacao_personalizada(nome):
+    import time
+    time.sleep(0.5)
+    print(f"Olá, {nome}!")
+
+print(calcular_soma_grande(1000000))
+saudacao_personalizada("Alice")
+````
+
+### Preservando Metadados com `functools.wraps`
+Ao usar decoradores, a função original pode perder seus metadados como `__name__` e `__doc__`. Para evitar isso, use `@functools.wraps`;
+
+````python
+import functools
+
+def meu_decorador_melhorado(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"Chamando {func.__name__}...")
+        resultado = func(*args, **kwargs)
+        print(f"{func.__name__} concluída.")
+        return resultado
+    return wrapper
+
+@meu_decorador_melhorado
+def somar_numeros(a, b):
+    """Soma dois números."""
+    return a + b
+
+print(somar_numeros(10, 20))
+print(somar_numeros.__name__)  # 'somar_numeros'
+print(somar_numeros.__doc__)   # 'Soma dois números.'
+````
+
+### Decoradores com Argumentos Proprios
+````python
+def repetir_n_vezes(n):
+    def decorador_real(func):
+        import functools
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                func(*args, **kwargs)
+        return wrapper
+    return decorador_real
+
+@repetir_n_vezes(3)
+def gritar(mensagem):
+    print(mensagem.upper() + "!!!")
+
+gritar("socorro")
+````
