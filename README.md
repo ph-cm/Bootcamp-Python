@@ -2520,3 +2520,127 @@ with temporizador():
  - Permite criar **blocos reutilizaveis** e **seguros**
 
 Use `with` sempre que estiver lidando com recursos que precisam ser liberados-como arquivos, conexoes, bloqueios(locks), ou operacoes temporarias.
+
+# Instalando Pacotes com `pip` e Gerenciando Ambientes Virtuais com `venv`
+
+## 🔧 O que é o `pip`?
+
+`pip` (Pip Installs Packages) é o **gerenciador de pacotes padrão para Python**. Ele permite instalar e gerenciar bibliotecas de terceiros disponíveis no [PyPI](https://pypi.org/), o repositório oficial da comunidade Python.
+
+---
+
+## Por que usar `pip`?
+
+- **Extensão de Funcionalidade**: Acesso a milhares de bibliotecas para desenvolvimento web, ciência de dados, machine learning, automação, etc.
+- **Gerenciamento de Dependências**: Instala, atualiza e remove pacotes necessários para seu projeto.
+
+---
+
+## Comandos Básicos do `pip`
+
+### Verificar a versão do `pip`
+
+```bash
+pip --version
+# ou
+pip3 --version  # Garante o uso do pip do Python 3
+````
+
+### Instalar um pacote
+
+````bash
+pip install nome_do_pacote
+````
+
+### Instalar uma versao especifica
+
+````bash
+pip install nome_do_pacote==versao
+````
+
+### Atualizar um pacote
+
+````bash
+pip install --upgrade nome_do_pacote
+````
+
+### Desinstalar um pacote 
+
+````bash
+pip uninstall nome_do_pacote
+````
+
+### Listae pacotes instalados
+
+````bash
+pip list
+````
+
+## Requirements.txt: slavando dependencias
+
+Crie um arquivo com as dependencias exatas do projeto
+
+````bash
+pip freeze > requirements.txt
+````
+
+Instale as dependencias listadas com:
+
+````bash
+pip install -r requirements.txt
+````
+
+## Ambientes Virtuais com `venv`
+
+Um ambiente virtual é uma **instancia isolada do Python** com seus proprios paoctes. Ideal para evitar conflitos entre projetos.
+
+### Vantagens:
+ - Isolamento de dependencias
+ - Organização e limpeza
+ - Facilidade para colaboração
+
+## Criando e Usando um Ambiente Virtual
+
+### Crie o ambiente virtual:
+
+````bash
+python3 -m venv .venv
+````
+### Ative o mabiente virtual:
+
+**Windows:**
+````bash
+.venv\Scripts\activate
+````
+
+**Linux:**
+````bash
+source .venv/bin/activate
+````
+
+### Instale pacotes no ambiente virtual:
+````bash
+pip install requests beautifulsoup4
+````
+
+### Salve os pacotes instalados:
+````bash
+pip freeze > requirements.txt
+````
+
+### Desative o ambiente virtual:
+````bash
+deactivate
+````
+
+## Fluxo de trabalho resumido:
+````bash
+cd meu_projeto/
+python3 -m venv .venv
+source .venv/bin/activate         # ou .venv\Scripts\activate no Windows
+pip install nome_do_pacote
+pip freeze > requirements.txt
+# Desenvolva seu código...
+deactivate
+````
+
