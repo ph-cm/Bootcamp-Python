@@ -2693,3 +2693,72 @@ arr.pop()          # arr = [1, 99, 3, 4, 5]
 # Slicing (subarrays)
 sub_arr = arr[1:4]  # sub_arr = [99, 3, 4]
 ````
+
+## Strings 
+
+### Teoria
+
+- **Sequências imutáveis de caracteres**
+- Similar a um array de caracteres, mas **não pode ser modificada diretamente**
+- Cada operação que altera uma string retorna uma nova string
+
+### 🛠️ Aplicações no LeetCode
+
+- Verificação de **anagramas** e **palíndromos**
+- Problemas de **substrings**
+- Análise de **frequência de caracteres**
+- **Manipulação de texto**, **regex**, e formatação
+
+---
+
+### 📌 Exemplo de Uso
+
+```python
+s = "hello"
+
+# Acesso por índice (O(1))
+print(s[0])      # 'h'
+
+# Slicing
+print(s[1:4])    # 'ell'
+
+# Imutabilidade
+# s[0] = 'j'     # Erro! Strings são imutáveis
+````
+
+### Metodos Uteis
+````python
+s = "LeetCode"
+
+# Tamanho
+len(s)                        # 8
+
+# Verificações
+s.startswith("Lee")          # False
+s.endswith("Code")           # True
+s.isalpha()                  # True se todos os caracteres forem letras
+
+# Transformações
+s.lower()                    # "leetcode"
+s.upper()                    # "LEETCODE"
+s.replace("e", "3")          # "L33tCod3"
+
+# Divisão e junção
+"abc def".split()            # ['abc', 'def']
+"-".join(["a", "b", "c"])    # "a-b-c"
+
+# Remoção de espaços
+"  texto  ".strip()          # "texto"
+````
+
+### Problema Rapido (Palindromo)
+
+````python
+# Verificar palíndromo
+def eh_palindromo(s):
+    return s == s[::-1]
+
+# Contar frequência
+from collections import Counter
+freq = Counter("banana")  # {'a': 3, 'b': 1, 'n': 2}
+````
