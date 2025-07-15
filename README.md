@@ -2762,3 +2762,70 @@ def eh_palindromo(s):
 from collections import Counter
 freq = Counter("banana")  # {'a': 3, 'b': 1, 'n': 2}
 ````
+## Hash Tables / Dicionários 
+
+###  Teoria
+
+- Estrutura de dados baseada em **pares chave-valor**
+- Operações de **pesquisa, inserção e remoção** com **tempo médio `O(1)`**
+- Pior caso `O(N)` (colisões de hash), mas **raro com boas funções de hash**
+- **Chaves devem ser imutáveis** (`int`, `str`, `tuple`, etc.)
+
+---
+
+### 🛠️ Aplicações no LeetCode
+
+- Contagem de **frequência de elementos** (`collections.Counter`)
+- Mapear valores/índices/IDs
+- Verificar se um **elemento existe rapidamente**
+- **Memoization** (cache de chamadas recursivas)
+- Problemas como **Two Sum**, **Group Anagrams**, **Top K Elements**, etc.
+
+---
+
+### 📌 Exemplo de Uso
+
+```python
+# Criação
+d = {"a": 1, "b": 2}
+
+# Acesso (O(1) médio)
+print(d["a"])           # 1
+print(d.get("c", 0))    # 0 (retorna valor padrão se chave não existe)
+
+# Inserção / Atualização
+d["c"] = 3              # Insere nova chave
+d["a"] = 10             # Atualiza valor existente
+
+# Remoção
+del d["b"]
+
+# Iteração
+for key, value in d.items():
+    print(key, value)
+````
+
+### Exemplos uteis
+
+````python
+# Contar frequência
+from collections import Counter
+freq = Counter(["a", "b", "a", "c", "b", "a"])
+# {'a': 3, 'b': 2, 'c': 1}
+
+# Memoization em recursão
+memo = {}
+def fib(n):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fib(n-1) + fib(n-2)
+    return memo[n]
+````
+
+#### Considere:
+ - Prefira `dict.get(key, default)` para evitar `KeyError`
+ - Use `collections.defaultdict`para contadores automaticos.
+ - Use `collections.Counter`para contar frequencia de elementos.
+ - Use `dict` para simular hash maps/sets em problemas classicos de LeetCode
