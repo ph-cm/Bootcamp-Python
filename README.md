@@ -2419,3 +2419,228 @@ try:
 except TypeError as e:
     print(f"Erro de tipo: {e}")
 ````
+
+# Gerenciadores de Contexto (`with`)
+
+A declaração `with` é usada para gerenciar recursos externos (como arquivos, conexões de banco de dados, locks) de forma **segura e eficiente**.  
+Ela garante que o recurso será **corretamente inicializado e limpo** (fechado/liberado), mesmo que ocorra um erro durante seu uso.
+
+---
+
+## O Problema que `with` Resolve
+
+### Sem `with`: Risco de esquecer de fechar
+
+```python
+f = open("meu_arquivo.txt", "w")
+try:
+    f.write("Olá, mundo!")
+    # Se ocorrer um erro aqui, f.close() pode nunca ser chamado!
+except Exception as e:
+    print(f"Erro: {e}")
+finally:
+    f.close()
+````
+
+### Com `with`: Seguro e conciso
+
+````python
+with open("meu_arquivo.txt", "w") as f:
+    f.write("Olá, com with!")
+# f é fechado automaticamente, mesmo se um erro ocorrer
+
+print("Arquivo gravado e fechado automaticamente.")
+
+#Leitura do arquivo
+with open("meu_arquivo.txt", "r") as f:
+    conteudo = f.read()
+    print(conteudo)
+````
+
+## Como o `with` funciona:
+Um **gerenciador de contexto** é um onjeto que implementa os metodos especiais:
+ - `__enter__(self)`: Chamado no inicio do bloco `with`. O valor retornado é atribuido a variavel apos `as`
+ - `__exit__(self, exc_type, exc_val, exc_tb)`: Chamado ao sair do bloco, **mesmo se ocorrer uma excecao**.
+
+### Criando seus proprios context managers
+
+````python
+class MinhaConexao:
+    def __init__(self, db_name):
+        self.db_name = db_name
+        self.conexao = None
+
+    def __enter__(self):
+        print(f"Abrindo conexão com o banco de dados: {self.db_name}")
+        self.conexao = f"Conexão com {self.db_name}"
+        return self.conexao
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print(f"Fechando conexão com o banco de dados: {self.db_name}")
+        self.conexao = None
+        if exc_type:
+            print(f"Uma exceção foi capturada: {exc_val}")
+            return False  # Se True, suprime a exceção
+
+with MinhaConexao("minha_base_de_dados") as db:
+    print(f"Usando a conexão: {db}")
+    # raise ValueError("Simulando erro...")
+
+print("Fora do bloco with.")
+````
+
+### Criando context managers com `contextlib`
+
+O modulo `contextlib` permite criar context managers com menos codigo usando geradores:
+
+````python
+from contextlib import contextmanager
+
+@contextmanager
+def temporizador():
+    import time
+    inicio = time.time()
+    try:
+        yield  # Código do bloco with será executado aqui
+    finally:
+        fim = time.time()
+        print(f"Tempo decorrido: {fim - inicio:.4f} segundos.")
+
+with temporizador():
+    print("Iniciando uma operação demorada...")
+    for _ in range(10000000):
+        pass
+    print("Operação concluída.")
+````
+
+### Vantagens de uso de `with`
+ - **Evitar vazamentos de recursos**(arquivos abertos, conexões esquecidas etc);
+ - **Codigo limpo e conciso**
+ - Facilita **tratamento de exceções**
+ - Permite criar **blocos reutilizaveis** e **seguros**
+
+Use `with` sempre que estiver lidando com recursos que precisam ser liberados-como arquivos, conexoes, bloqueios(locks), ou operacoes temporarias.
+
+# Instalando Pacotes com `pip` e Gerenciando Ambientes Virtuais com `venv`
+
+## 🔧 O que é o `pip`?
+
+`pip` (Pip Installs Packages) é o **gerenciador de pacotes padrão para Python**. Ele permite instalar e gerenciar bibliotecas de terceiros disponíveis no [PyPI](https://pypi.org/), o repositório oficial da comunidade Python.
+
+---
+
+## Por que usar `pip`?
+
+- **Extensão de Funcionalidade**: Acesso a milhares de bibliotecas para desenvolvimento web, ciência de dados, machine learning, automação, etc.
+- **Gerenciamento de Dependências**: Instala, atualiza e remove pacotes necessários para seu projeto.
+
+---
+
+## Comandos Básicos do `pip`
+
+### Verificar a versão do `pip`
+
+```bash
+pip --version
+# ou
+pip3 --version  # Garante o uso do pip do Python 3
+````
+
+### Instalar um pacote
+
+````bash
+pip install nome_do_pacote
+````
+
+### Instalar uma versao especifica
+
+````bash
+pip install nome_do_pacote==versao
+````
+
+### Atualizar um pacote
+
+````bash
+pip install --upgrade nome_do_pacote
+````
+
+### Desinstalar um pacote 
+
+````bash
+pip uninstall nome_do_pacote
+````
+
+### Listae pacotes instalados
+
+````bash
+pip list
+````
+
+## Requirements.txt: slavando dependencias
+
+Crie um arquivo com as dependencias exatas do projeto
+
+````bash
+pip freeze > requirements.txt
+````
+
+Instale as dependencias listadas com:
+
+````bash
+pip install -r requirements.txt
+````
+
+## Ambientes Virtuais com `venv`
+
+Um ambiente virtual é uma **instancia isolada do Python** com seus proprios paoctes. Ideal para evitar conflitos entre projetos.
+
+### Vantagens:
+ - Isolamento de dependencias
+ - Organização e limpeza
+ - Facilidade para colaboração
+
+## Criando e Usando um Ambiente Virtual
+
+### Crie o ambiente virtual:
+
+````bash
+python3 -m venv .venv
+````
+### Ative o mabiente virtual:
+
+**Windows:**
+````bash
+.venv\Scripts\activate
+````
+
+**Linux:**
+````bash
+source .venv/bin/activate
+````
+
+### Instale pacotes no ambiente virtual:
+````bash
+pip install requests beautifulsoup4
+````
+
+### Salve os pacotes instalados:
+````bash
+pip freeze > requirements.txt
+````
+
+### Desative o ambiente virtual:
+````bash
+deactivate
+````
+
+## Fluxo de trabalho resumido:
+````bash
+cd meu_projeto/
+python3 -m venv .venv
+source .venv/bin/activate         # ou .venv\Scripts\activate no Windows
+pip install nome_do_pacote
+pip freeze > requirements.txt
+# Desenvolva seu código...
+deactivate
+````
+
