@@ -2829,3 +2829,70 @@ def fib(n):
  - Use `collections.defaultdict`para contadores automaticos.
  - Use `collections.Counter`para contar frequencia de elementos.
  - Use `dict` para simular hash maps/sets em problemas classicos de LeetCode
+
+## 4️⃣ Sets (`set` em Python)
+
+### 📘 Teoria
+
+- **Coleções não ordenadas de elementos únicos**
+- Baseadas em **hash table**, como `dict`
+- Operações de **busca, inserção e remoção** têm tempo médio `O(1)`
+- Ideal para remoção de duplicatas e verificação de existência rápida
+
+---
+
+### 🛠️ Aplicações no LeetCode
+
+- **Remover duplicatas** de listas
+- **Verificar presença** de elementos com alta performance
+- Operações de **interseção, união, diferença**
+- **Detecção de ciclos** em grafos ou listas ligadas
+- Problemas como **Longest Consecutive Sequence**, **Happy Number**, etc.
+
+---
+
+### 📌 Exemplo de Uso
+
+```python
+s = {1, 2, 3}
+
+# Adicionar elementos
+s.add(4)
+s.add(2)  # Ignorado, pois 2 já existe
+
+print(s)  # {1, 2, 3, 4}
+
+# Verificar existência
+print(3 in s)  # True (O(1) médio)
+
+# Remover elemento
+s.remove(1)
+print(s)  # {2, 3, 4}
+
+# Operações entre conjuntos
+set1 = {1, 2, 3}
+set2 = {3, 4, 5}
+
+print(set1.intersection(set2))  # {3}
+print(set1.union(set2))         # {1, 2, 3, 4, 5}
+print(set1.difference(set2))    # {1, 2}
+````
+### Exemplo pratico
+
+````python
+# Detectar se há elementos duplicados
+def tem_duplicados(nums):
+    return len(nums) != len(set(nums))
+
+# Exemplo
+print(tem_duplicados([1, 2, 3, 1]))  # True
+print(tem_duplicados([1, 2, 3]))     # False
+````
+
+#### Dicas
+  - Use `set()` para ocnverter listas e eliminar duplicatas:
+    ````python
+    unique = set([1, 1, 2, 3])
+    ````
+  - Verificar exixtencia com `in` em `set` é mais rapido que em `list`
+  - Sets nao mantem ordem. Para conjuntos ordenados, use `SortedSet` de bibliotecas extern como `sortedcontainers`.
