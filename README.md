@@ -2644,3 +2644,52 @@ pip freeze > requirements.txt
 deactivate
 ````
 
+# 🧠 Estruturas de Dados Essenciais para LeetCode
+
+Para se destacar no LeetCode e em competições de programação, é fundamental dominar as estruturas de dados. Python oferece várias delas de forma nativa, enquanto outras exigem implementação manual ou compreensão de seus conceitos internos.
+
+---
+
+## 1️⃣ Arrays / Listas
+
+### 📘 Teoria
+
+- **Coleções ordenadas** de elementos.
+- Acesso por índice: `O(1)`
+- Inserções/remoções no **meio**: `O(N)` (elementos precisam ser realocados)
+- Inserção/remoção no **final**: `O(1)` em média (amortizado)
+
+### 🛠️ Aplicações no LeetCode
+
+- Problemas de **busca** e **ordenação**
+- Técnicas de **sliding window**
+- Armazenamento de **dados sequenciais**
+- Representação de **matrizes** (listas de listas)
+
+---
+
+### 📌 Exemplo de Uso
+
+```python
+# Criação
+arr = [1, 2, 3, 4, 5]
+
+# Acesso (O(1))
+print(arr[0])  # 1
+print(arr[2])  # 3
+
+# Inserção no meio (O(N))
+arr.insert(1, 99)  # arr = [1, 99, 2, 3, 4, 5]
+
+# Remoção no meio (O(N))
+arr.pop(2)         # arr = [1, 99, 3, 4, 5]
+
+# Adição no final (amortized O(1))
+arr.append(6)      # arr = [1, 99, 3, 4, 5, 6]
+
+# Remoção no final (amortized O(1))
+arr.pop()          # arr = [1, 99, 3, 4, 5]
+
+# Slicing (subarrays)
+sub_arr = arr[1:4]  # sub_arr = [99, 3, 4]
+````
