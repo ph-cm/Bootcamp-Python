@@ -2830,9 +2830,9 @@ def fib(n):
  - Use `collections.Counter`para contar frequencia de elementos.
  - Use `dict` para simular hash maps/sets em problemas classicos de LeetCode
 
-## 4️⃣ Sets (`set` em Python)
+##  Sets
 
-### 📘 Teoria
+### Teoria
 
 - **Coleções não ordenadas de elementos únicos**
 - Baseadas em **hash table**, como `dict`
@@ -2841,7 +2841,7 @@ def fib(n):
 
 ---
 
-### 🛠️ Aplicações no LeetCode
+###  Aplicações no LeetCode
 
 - **Remover duplicatas** de listas
 - **Verificar presença** de elementos com alta performance
@@ -2851,7 +2851,7 @@ def fib(n):
 
 ---
 
-### 📌 Exemplo de Uso
+### Exemplo de Uso
 
 ```python
 s = {1, 2, 3}
@@ -2896,3 +2896,76 @@ print(tem_duplicados([1, 2, 3]))     # False
     ````
   - Verificar exixtencia com `in` em `set` é mais rapido que em `list`
   - Sets nao mantem ordem. Para conjuntos ordenados, use `SortedSet` de bibliotecas extern como `sortedcontainers`.
+
+## 5️⃣ Pilhas (`Stack` em Python)
+
+### 📘 Teoria
+
+- Estrutura de dados **LIFO** (*Last-In, First-Out*)
+- **`Push`**: adiciona elemento no topo
+- **`Pop`**: remove o elemento do topo
+- **`Peek` / `Top`**: acessa o topo sem remover
+
+---
+
+### 🛠️ Aplicações no LeetCode
+
+- **Validação de parênteses**, colchetes e chaves
+- **Avaliação de expressões** (ex: notação polonesa reversa - RPN)
+- Algoritmos com **backtracking**
+- **Busca em profundidade (DFS)** de forma iterativa
+- Problemas clássicos como:
+  - Valid Parentheses
+  - Evaluate Reverse Polish Notation
+  - Daily Temperatures
+
+---
+
+### ⚙️ Implementação com `list` em Python
+
+A estrutura de `list` em Python funciona eficientemente como pilha:
+
+```python
+stack = []
+
+# Push
+stack.append(10)
+stack.append(20)
+print(stack)         # [10, 20]
+
+# Peek (ver o topo)
+top_element = stack[-1]
+print(top_element)   # 20
+
+# Pop (remover do topo)
+popped_element = stack.pop()
+print(popped_element)  # 20
+print(stack)           # [10]
+````
+
+### Exemplo: Validação de Parenteses
+
+````python
+def validar_parenteses(s):
+    stack = []
+    mapa = {')': '(', ']': '[', '}': '{'}
+    for char in s:
+        if char in mapa.values():
+            stack.append(char)
+        elif char in mapa:
+            if not stack or stack[-1] != mapa[char]:
+                return False
+            stack.pop()
+    return not stack
+
+print(validar_parenteses("()[]{}"))     # True
+print(validar_parenteses("([)]"))       # False
+print(validar_parenteses("{[]}"))       # True
+````
+
+### Dicas
+  - Evite usar `.insert(0, . . .)
+  - Se quiser evitar o uso de listas, pode usar `collections.deque`, mas para pilhas simples `list` ja é o suficiente.
+  - Acompanhe o tamanho da pilha com `len(stack)` se necessário.
+
+
