@@ -2968,4 +2968,36 @@ print(validar_parenteses("{[]}"))       # True
   - Se quiser evitar o uso de listas, pode usar `collections.deque`, mas para pilhas simples `list` ja é o suficiente.
   - Acompanhe o tamanho da pilha com `len(stack)` se necessário.
 
+# Filas (Queues)
 
+## Teoria
+
+Estrutura de dados **FIFO**(First-In, First-Out): o ´primeiro elemento inserido é o primeiro a ser removido.
+
+  - **Enqueue:** Adicionar um elemento no final da fila.
+  - **Dequeue:** Remover o elemento do inicio da fila.
+
+Em python, a forma mais eficiente de implementar filas é usando `collections.deque`, onde `append()` e `popleft()` são operações O(1). Listas comuns (`list`) usam `insert(0, x)` e `pop(0)`, que são O(N) --menos eficientes para filas grandes.
+
+### Uso no LeetCode 
+  - **BFS** (Busca em largura) em grafos e arvores.
+  - **Agendamento de tarefas**.
+  - **Simulações** e **problemas de fluxo**.
+
+#### Exemplo:
+
+````python
+from collections import deque
+
+queue = deque()
+queue.append(10)  # Enqueue
+queue.append(20)
+print(queue)      # deque([10, 20])
+
+front_element = queue[0]  # Peek (elemento da frente)
+print(front_element)      # 10
+
+dequeued_element = queue.popleft()  # Dequeue
+print(dequeued_element)   # 10
+print(queue)              # deque([20])
+````
