@@ -3243,3 +3243,27 @@ def two_sum_sorted(nums, target):
 
 print(two_sum_sorted([2, 7, 11, 15], 9)) # [0, 1]
 ````
+
+# Algoritmo de Ordenação
+## Teoria
+Metodos para organizar elementos de uma lista em uma ordem especifica(crescente ou decrescente).
+  - **Bubble Sort, Selection Sort, Insertion Sort:** O(N^2) -> (ruins para grandes datasets).
+  - **Merge Sort, Quick Sort, Heap Sort:** O(N log N) -> (eficientes para grandes datasets).
+
+### Uso no LeetCode
+  - Muitos problemas requerem que os dados estejam ordenados para serem resolvidos.
+  - Aprender os conceitos por tras deles ajudam a otimizar soluções.
+
+#### Python: a função `sorted()` e o metodo `list.sort()` são implementados usando Timsort (uma combinação de Merge Sort e Insertion Sort), que é muito eficinete.
+
+### Exemplo
+
+````python
+# Usar sorted() ou list.sort() é o suficiente para a maioria dos problemas
+nums = [3, 1, 4, 1, 5, 9, 2, 6]
+sorted_nums = sorted(nums)
+print(sorted_nums)
+
+nums.sort(reverse=True)
+print(nums)
+````
