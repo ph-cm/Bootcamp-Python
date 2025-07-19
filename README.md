@@ -3082,3 +3082,70 @@ def inorder_traversal(node):
 
 # inorder_traversal(root)
 ````
+
+# Grafos (Graphs)
+
+## Teoria
+Conjunto de vértices (nós) e arestas (conexões entre nós).
+  - **Direcionados/Não Direcionados:** As arestas tem uma direção ou não;
+  - **Ponderado/Não Ponderado:** As arestas tem um peso ou custo;
+
+- **Representação em Python:**
+  - **Lista de Adjacência:** Um dicionário onde as chaves são os nós e os valores são listas de seus vizinhos. (Mais comum e eficiente para a maioria dos problemasde LeetCode);
+  - **Matriz de Adjacência:** Uma matriz onde `adj[i][j]` é 1 se houver uma aresta de `i` para `j`, e 0 caso contrario. (Melhor para grafos densos ou quadno voce precisa saber rapidadmente se uma aresta existe).
+
+### Uso no LeetCode:
+  - Caminho mais curto (Dijkstra, Bellman-Ford);
+  - Alcance(BFS, DFS);
+  - Ciclos (detecção de ciclo);
+  - Componentes conectados;
+  - Topologia Sort;
+
+### Exemplo:
+
+````python
+# Representação por Lista de Adjacência
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'E'],
+    'D': ['B'],
+    'E': ['C']
+}
+
+# BFS (Breadth-First Search) - Usando Fila
+from collections import deque
+
+def bfs(graph, start_node):
+    visited = set()
+    queue = deque([start_node])
+    visited.add(start_node)
+
+    while queue:
+        node = queue.popleft()
+        print(node)
+
+        for neighbor in graph.get(node, []):
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+# bfs(graph, 'A')
+
+# DFS (Depth-First Search) - Usando Pilha (ou Recursão)
+def dfs_iterative(graph, start_node):
+    visited = set()
+    stack = [start_node]
+    visited.add(start_node)
+
+    while stack:
+        node = stack.pop()
+        print(node)
+
+        for neighbor in graph.get(node, []): # Visitar vizinhos (pode ser iterado em ordem inversa para um comportamento específico)
+            if neighbor not in visited:
+                visited.add(neighbor)
+                stack.append(neighbor)
+
+# dfs_iterative(graph, 'A')
+````
