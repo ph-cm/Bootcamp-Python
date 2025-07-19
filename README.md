@@ -3149,3 +3149,43 @@ def dfs_iterative(graph, start_node):
 
 # dfs_iterative(graph, 'A')
 ````
+
+# Heaps (Filas de Prioridade)
+
+## Teoria:
+Estrutura de dados baseada em arvores binarias que satisfaz a prioridade heap(o nó pai é sempre maior/menor que seus filhos)
+  - **min_heap:** O menor elemento está sempre na raiz;
+  - **max_heap:** O maior elemento está sempre na raiz;
+
+- **Implementação em Python:** O modulo `heapq` implementa o algoritmo de heap em uma lista Python. Ele é um min_heap por padrão. Para um max_heap, armazene os npumeros negativos.
+
+### Uso no LeetCode:
+  - K-th largest/smallest element
+  - Encontrar mediana em um stream de dados.
+  - Algoritmo de Dijkstra.
+  - Problemas de agendamento de tarefas com prioridades.
+
+### Exemplo
+
+````python
+import heapq
+
+# Min-Heap
+min_heap = []
+heapq.heappush(min_heap, 3)
+heapq.heappush(min_heap, 1)
+heapq.heappush(min_heap, 4)
+print(min_heap) # [1, 3, 4] (representação interna da lista, não necessariamente ordenada visualmente)
+
+print(heapq.heappop(min_heap)) # 1 (remove o menor elemento)
+print(min_heap)
+
+# Max-Heap (armazenando negativos)
+max_heap = []
+heapq.heappush(max_heap, -3)
+heapq.heappush(max_heap, -1)
+heapq.heappush(max_heap, -4)
+print(max_heap)
+
+print(-heapq.heappop(max_heap)) # 4 (remove o maior elemento original)
+````
