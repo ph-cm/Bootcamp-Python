@@ -3001,3 +3001,42 @@ dequeued_element = queue.popleft()  # Dequeue
 print(dequeued_element)   # 10
 print(queue)              # deque([20])
 ````
+
+# Listas Ligadas (Linked Lists)
+
+## Teoria:
+
+Uma lista é uma coleção de nós, onde cada nó contem:
+  - Um valor;
+  - Um ponteiro (referencia) para o proximo nó;
+
+Tipos:
+  - **Singly Linked List:** cada nó aponta para o proximo;
+  - **Doubly Linked List:** cada nó apont para o proximo e para o anterior;
+
+### Uso no LeetCode
+  - Inverter listas ligadas;
+  - Detectar ciclos;
+  - Remover o N-ésimo nó do final
+  - Inserções/remoções eficientes em posições arbitrarias (melhor que arrays em alguns casos)
+
+### Exemplo:
+
+````python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+# Exemplo: criação de uma lista ligada: 1 -> 2 -> 3
+head = ListNode(1)
+head.next = ListNode(2)
+head.next.next = ListNode(3)
+
+# Impressão dos valores
+current = head
+while current:
+    print(current.val, end=" -> ")
+    current = current.next
+print("None")
+````
