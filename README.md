@@ -3046,9 +3046,9 @@ print("None")
 ## Teoria
 Estrutura de dados hierárquica composta por nós (um nó raiz, nós filhos, folhas).
 
-  **- Árvore Binária:** Cada nó tem no maximo dois filhos (esquerdo e direito).
-  **- BST (Binary Search Tree):** Árvore binaria onde os nós à esquerda são menores que o pai, e os nós à direita são maiores.
-  **- Trie (Prefix Tree):** Usada para armazenar strings e otimizar buscas por prefixo.
+  - Árvore Binária: Cada nó tem no maximo dois filhos (esquerdo e direito).
+  - BST (Binary Search Tree): Árvore binaria onde os nós à esquerda são menores que o pai, e os nós à direita são maiores.
+  - Trie (Prefix Tree): Usada para armazenar strings e otimizar buscas por prefixo.
 
 ### Uso no LeetCode
   - Problemas de travessia (in-order, pre-order, post-order).
