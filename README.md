@@ -3189,3 +3189,30 @@ print(max_heap)
 
 print(-heapq.heappop(max_heap)) # 4 (remove o maior elemento original)
 ````
+
+# Prefix Sum (Soma de Prefixo)
+
+## Teoria
+Uma tecnica de otimização onde voce pre-calcula as somas cumulativas de uma array. Isso permite que voce encontre a soma de qualquer subarray no tmepo de O(1).
+
+### Uso no LeetCode
+  - Problemas de soma de subarray.
+  - Encontrar um subarray com soma k.
+  - Calculos rapidos em janelas deslizantes.
+
+### Exemplo
+
+````python
+arr = [1, 2, 3, 4, 5]
+prefix_sum = [0] * (len(arr) + 1) # prefix_sum[0] é 0
+for i in range(len(arr)):
+    prefix_sum[i+1] = prefix_sum[i] + arr[i]
+
+print(prefix_sum) # [0, 1, 3, 6, 10, 15]
+
+# Soma do subarray de índice 1 a 3 (elementos 2, 3, 4)
+# Soma de arr[i...j] = prefix_sum[j+1] - prefix_sum[i]
+sum_subarray = prefix_sum[4] - prefix_sum[1] # prefix_sum[3+1] - prefix_sum[1]
+print(sum_subarray) # 9 (2 + 3 + 4)
+````
+
