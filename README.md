@@ -3216,3 +3216,30 @@ sum_subarray = prefix_sum[4] - prefix_sum[1] # prefix_sum[3+1] - prefix_sum[1]
 print(sum_subarray) # 9 (2 + 3 + 4)
 ````
 
+# Two Pointers (Dois Ponteiros)
+
+## Teoria
+Uma tecnica onde dois ponteiros (índices) são usados para iterar sobre uma lista ou array de forma eficiente. Os ponteiros podem se mover na mesma direção ou em direções opostas.
+
+### Uso no LeetCode
+  - Encontrar pares que somam um alvo em uma array ordenado.
+  - Remover duplicatas de um array ordenado.
+  - Verificar palíndromos.
+  - Janela deslizante.
+
+````python
+# Encontrar par com soma alvo em um array ordenado
+def two_sum_sorted(nums, target):
+    left, right = 0, len(nums) - 1
+    while left < right:
+        current_sum = nums[left] + nums[right]
+        if current_sum == target:
+            return [left, right]
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+    return [-1, -1]
+
+print(two_sum_sorted([2, 7, 11, 15], 9)) # [0, 1]
+````
