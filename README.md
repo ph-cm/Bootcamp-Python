@@ -3040,3 +3040,45 @@ while current:
     current = current.next
 print("None")
 ````
+
+# Arvores (Trees)
+
+## Teoria
+Estrutura de dados hierárquica composta por nós (um nó raiz, nós filhos, folhas).
+
+  - Árvore Binária: Cada nó tem no maximo dois filhos (esquerdo e direito).
+  - BST (Binary Search Tree): Árvore binaria onde os nós à esquerda são menores que o pai, e os nós à direita são maiores.
+  - Trie (Prefix Tree): Usada para armazenar strings e otimizar buscas por prefixo.
+
+### Uso no LeetCode
+  - Problemas de travessia (in-order, pre-order, post-order).
+  - Busca, inserção, remoção eficientes em BSTs.
+  - Representar hierarquias.
+  - Autocompletar (Tries).
+
+### Exemplo:
+
+````python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+# Exemplo de uma árvore binária simples
+#     1
+#    / \
+#   2   3
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+
+# Travessia In-order (esquerda, raiz, direita)
+def inorder_traversal(node):
+    if node:
+        inorder_traversal(node.left)
+        print(node.val)
+        inorder_traversal(node.right)
+
+# inorder_traversal(root)
+````
