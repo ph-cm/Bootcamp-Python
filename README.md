@@ -3267,3 +3267,31 @@ print(sorted_nums)
 nums.sort(reverse=True)
 print(nums)
 ````
+
+# Programação Dinâmica 
+
+## Teoria
+Técnica de otimização para problemas complexos que podem ser divididos  em subproblemas sobrepostos e subestrutura otima. Resolve-se cada subproblema apenas uma vez e armazena seus resultados(memorization ou tabulation) para evitar racálculos.
+
+### Uso no LeetCode
+  - Problemas de sequência (Longest Common Subsequence, Coin change)
+  - Caminho em matrizes
+  - Problemas de mochila (Knapsack).
+
+### Exemplo
+
+````python
+# Exemplo: Fibonacci com Memoization (abordagem top-down DP)
+memo = {}
+def fib_dp(n):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    
+    result = fib_dp(n - 1) + fib_dp(n - 2)
+    memo[n] = result
+    return result
+
+print(fib_dp(10)) # 55
+````
