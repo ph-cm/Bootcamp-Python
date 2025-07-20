@@ -3295,3 +3295,38 @@ def fib_dp(n):
 
 print(fib_dp(10)) # 55
 ````
+
+# Backtracking
+
+## Teoria
+Uma técnica algoritmica para encontrar soluções para problemas que tem a propriedade de "soluções parciais" que podem ser estendidas para uma solução completa. Se uma solução parcial não leva a uma solução completa, o algoritmo "retrocede" (backtrack) para tentar outra opção.
+
+### Uso no LeetCode
+  - Gerar todas as permutações/combinações.
+  - Problemas de N-Queens, Sudoku Solver.
+  - Caminhos em grafos(explorando todas as possibilidades).
+
+### Exemplo
+
+````python
+# Exemplo: Gerar todas as permutações de uma lista
+def generate_permutations(nums):
+    result = []
+    def backtrack(current_permutation, remaining_nums):
+        if not remaining_nums:
+            result.append(list(current_permutation)) # Adiciona uma cópia
+            return
+
+        for i in range(len(remaining_nums)):
+            num = remaining_nums[i]
+            current_permutation.append(num)
+            # Chama recursivamente com o número removido dos restantes
+            backtrack(current_permutation, remaining_nums[:i] + remaining_nums[i+1:])
+            current_permutation.pop() # Backtrack: remove o último elemento para tentar outras opções
+    
+    backtrack([], nums)
+    return result
+
+print(generate_permutations([1, 2, 3]))
+# Saída: [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+````
